@@ -1,6 +1,6 @@
 READ = evince
 COMP = pdflatex
-NUM = 2
+NUM = 3
 
 ass$(NUM).pdf: ass$(NUM).tex
 	$(COMP) $<
