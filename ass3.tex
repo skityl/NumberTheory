@@ -1,0 +1,279 @@
+\documentclass{unswmaths}
+\usepackage[a4paper]{geometry}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\setlength\parindent{0pt}
+
+\begin{document}
+\unswtitle{Edward McDonald}{3375335}{Number Theory}{Assignment}
+\fancyfoot[l]{Edward McDonald}
+\fancyfoot[r]{\today}
+\fancyhead[l]{The University of New South Wales}
+\fancyhead[r]{MATH5645 Number Theory}
+
+\section*{Question 1}
+
+\begin{unswdef}
+    For an integer $n > 0$, $\omega(n)$ is the number of distinct prime factors of $n$, and $\Omega(n)$
+    is number of terms in the prime factorisation of $n$, that is, if $n = p_1^{k_1}\ldots p_m^{k_m}$
+    where $p_1,p_2,\ldots,p_m$ are prime, we have $\omega(n) = m$ and $\Omega(n) = k_1+k_2+\cdots+k_m$.
+    
+    $\tau(n)$ denotes the number of factors of $n$.
+\end{unswdef}
+\begin{unswlem}
+    For an integer $n > 2$,
+    \begin{equation*}
+        2^{\omega(n)}\leq \tau(n) \leq 2^{\Omega(n)}\leq n.
+    \end{equation*}
+\end{unswlem}
+\begin{proof}
+    Let $n > 2$ be an integer. Then suppose that $n$ has prime factorisation
+    \begin{equation*}
+        n = p_1^{k_1}p_2^{k_2}\ldots p_m^{k_m}
+    \end{equation*}
+    where the numbers $p_1,p_2,\ldots,p_m$ are prime and the exponents $k_1,k_2,\ldots,k_m$
+    are positive integers.
+    
+    Now let $d|n$. Then $d$ has prime factorisation
+    \begin{equation*}
+        d = p_1^{r_1}p_2^{r_2}\ldots p_m^{r_m}
+    \end{equation*}
+    for $0\leq r_i \leq k_i$ for each $1\leq i \leq m$. Hence we have $k_i+1$
+    possible choices for the exponent of the $k$th prime factor, and so the total
+    number of choices for $d$ is
+    \begin{equation*}
+        \prod_{i=1}^m (k_i+1).
+    \end{equation*}
+    Hence,
+    \begin{equation*}
+        \tau(n) = \prod_{i=1}^m (k_i+1).
+    \end{equation*}
+    
+    Since by assumption each $k_i$ is positive, we have $k_i \geq 1$, and hence,
+    \begin{equation*}
+        \tau(n) \geq \prod_{i=1}^m (1+1) = 2^m = 2^{\omega(n)}.
+    \end{equation*}
+    
+    Now note the inequality,
+    \begin{equation*}
+        x+1\leq 2^x
+    \end{equation*}
+    valid for $x > 1$ and $p \geq 2$.
+    
+    So for each $i$, $k_i+1\leq 2^{k_i}$.
+    Hence, we have
+    \begin{equation*}
+        \tau(n) \leq \prod_{i=1}^m 2^{k_i} = 2^{\Omega(n)}.
+    \end{equation*}
+    
+    Now since each $p_i\geq 2$, we can bound $2^{\Omega(n)}$
+    by
+    \begin{equation*}
+        2^{\Omega(n)} = \prod_{i=1}^m 2^{k_i} \leq \prod_{i=1}^m p_i^{k_i} = n.
+    \end{equation*}
+    Hence, $2^{\omega(n)}\leq \tau(n) \leq 2^{\Omega(n)} \leq n$.
+\end{proof}
+\begin{unswlem}
+    $\tau(n) = 2^{\omega(n)}$ if and only if $n$ is square free.
+\end{unswlem}
+\begin{proof}
+    Suppose that $n$ is square free. Then $n$ has prime factorisation,
+    \begin{equation*}
+        n = p_1p_2p_3\cdots p_m
+    \end{equation*}
+    for some distinct primes $p_1,p_2,\ldots,p_m$ and $m = \omega(n)$. Hence each factor of $n$ must be of
+    the form
+    \begin{equation*}
+        p_1^{\alpha_1}p_2^{\alpha_2}\cdots p_m^{\alpha_m}
+    \end{equation*}
+    with each exponent $\alpha_k \in \{0,1\}$ for $1\leq k \leq m$. Hence there
+    are $2$ choices for each exponent, and hence $2^m = 2^{\omega(n)}$ possible
+    factors of $n$. Then $\tau(n) = 2^{\omega(n)}$.
+    
+    Now suppose that $n$ is not squarefree, so $n$ has prime factorisation
+    \begin{equation*}
+        n = p_1^{k_1}p_2^{k_2}\cdots p_m^{k_m}.
+    \end{equation*}
+    where each $k_i$ is a positive integer, and at least one of the exponents $k_i$ exceeds $1$. 
+    
+    Suppose without loss of generality that $k_1 \geq 2$. Then,
+    \begin{equation*}
+        \tau(n) = \prod_{i=1}^n (k_i+1) \geq 3\prod_{i=1}^n (k_i+1) \geq 3\cdot 2^{m-1} > 2^m.
+    \end{equation*}
+    Hence, it is impossible that $\tau(n) = n$ when $n$ is square free.
+\end{proof} 
+
+\section*{Question 2}
+\begin{unswdef}
+    For $k$ and $n$ positive integers, define the \emph{Jordan totient function} as
+    \begin{equation*}
+        J_k(n) = n^k\prod_{p|n} (1-p^{-k})
+    \end{equation*}
+    where the product is taken over prime factors of $n$, and $J_k(1) = 1$.
+\end{unswdef}
+\begin{unswlem}
+    $J_k$ is multiplicative.
+\end{unswlem}
+\begin{proof}
+    Let $n$ and $m$ be positive integers with $\gcd(n,m) = 1$. Then
+    \begin{equation*}
+        J_k(nm) = n^km^k\prod_{p|nm}(1-p^{-k}).
+    \end{equation*}
+    However since $n$ and $m$ share no common prime factors, we may consider
+    \begin{equation*}
+        J_k(nm) = n^km^k\prod_{p|n,p|m} (1-p^{-k}).
+    \end{equation*}
+    So we can split up the product,
+    \begin{align*}
+        J_k(nm) &= \left[n^k\prod_{p|n}(1-p^{-k})\right]\left[m^k\prod_{p|m}(1-p^{-k})\right]\\
+        &= J_k(n)J_k(m).
+    \end{align*}
+    So $J_k$ is multiplicative.
+\end{proof}
+\begin{unswlem}
+    The function $F(n) = \sum_{d|n}\mu(d)\left(\frac{n}{d}\right)^k$ is multiplicative. 
+\end{unswlem}
+\begin{proof}
+    The functions $n\mapsto n^k$ and $\mu$ are multiplicative.
+    Since $F$ is the dirichlet convolution of these functions, $F$
+    is multiplicative.    
+\end{proof}
+\begin{unswthm}
+    \begin{equation*}
+        J_k(n) = F(n)
+    \end{equation*}
+    where 
+    \begin{equation*}
+        F(n) = \sum_{d|n} \mu(d)\left(\frac{n}{d}\right)^k
+    \end{equation*}
+    and $\mu$ is the M\"obius function.
+\end{unswthm}
+\begin{proof}
+    Since $J_k$ and $F$ are multiplicative, they are determined by their values at prime powers. So let $p$ be prime
+    and let $\alpha$ be a positive integer. Then
+    \begin{equation*}
+        J_k(p^\alpha) = p^{k\alpha}(1-p^{-k}) = p^{k\alpha}-p^{k(\alpha-1)}
+    \end{equation*}
+    and
+    \begin{equation*}
+        J_k(p^\alpha) = (p^\alpha)^k+\mu(p)(p^{\alpha-1})^k = p^{k\alpha}-p^{k(\alpha-1)}.
+    \end{equation*}
+    Hence, $F = J_k$.
+\end{proof}
+\begin{unswthm}
+    If $n$ is a positive integer with prime factorisation $n = p_1^{\alpha_1}p_2^{\alpha_2}\cdots p_m^{\alpha_m}$, 
+    then $J_k^{-1}(n) = (1-p_1^k)(1-p_2^k)\ldots(1-p_m^k)$, where the inverse is in the sense of the Dirichlet product.
+\end{unswthm}
+\begin{proof}
+    Note that we can write $J_k = \mu * G$, where $G(n) = n^k$. Since $G$ is a completely multiplicative
+    function, $G^{-1} = \mu G$. Hence, since $\mu^{-1} = u$,
+    \begin{equation*}
+        J_k^{-1} = u*(\mu G).
+    \end{equation*} 
+    For any any integer $n>1$, 
+    \begin{equation*}
+        J_k^{-1}(n) = \sum_{d|n} \mu(d)d^k.
+    \end{equation*}
+    Note that since $J_k^{-1}$ is a dirichlet convolution of multiplicative functions, $J_k^{-1}$ is multiplicative.
+    
+    Let $p$ be a prime, and $\alpha$ a non negative integer. Then
+    \begin{equation*}
+        J_k^{-1}(p^\alpha) = 1-p^k.
+    \end{equation*}
+    
+    Hence, if $n$ has prime factorisation $p_1^{k_1}p_2^{k_2}\cdots p_m^{k_m}$, then
+    \begin{equation*}
+        J_k^{-1}(n) = (1-p_1^k)(1-p_2^k)\ldots(1-p_m^k).
+    \end{equation*}
+\end{proof}
+\section*{Question 3}
+\begin{unswdef}
+    Let $x > 0$. Then we define
+    \begin{equation*}
+        M_2(x) = \sum_{n\leq x} (\mu(n))^2
+    \end{equation*}
+\end{unswdef}
+\begin{unswlem}
+\label{M2Alt}
+    For a positive integer $n \geq 1$,
+    \begin{equation*}
+        (\mu(n))^2 = \sum_{m^2|n} \mu(m).
+    \end{equation*}
+\end{unswlem}
+\begin{proof}
+    Note that
+    \begin{equation*}
+        (\mu(n))^2 = \begin{cases}
+            1\text{ if }n\text{ is square free or }n = 1\\
+            0\text{ otherwise.}
+        \end{cases}
+    \end{equation*}
+    Let 
+    \begin{equation*}
+        F(n) = \sum_{m^2|n} \mu(m).
+    \end{equation*}
+    Then we need to show that $F(n) = 1$ when $n$ is $1$ or square free 
+    and $0$ otherwise.
+    
+    Any number $n$ can be expressed as a product of a square and a square
+    free integer. So let $n = a^2q$, where $a \geq 1$ is an integer 
+    and $q$ is squarefree. Therefore,  $m^2|n$ if and only if $m|a$. Hence,
+    \begin{align*}
+        F(n) &= F(a^2q)\\
+             &= \sum_{m|a}\mu(m)\\
+             &= I(a).
+    \end{align*}
+    Hence $F(n) = 0$ if $a > 1$ and $F(n) = 1$ if $a = 1$.
+    
+    Therefore, $F(n) = 0$ when $n$ is not squarefree and $1$ otherwise.
+    Hence $F(n) = (\mu(n))^2)$.
+\end{proof}
+\begin{unswlem}
+    \begin{equation*}
+        M_2(x) = x\sum_{m\leq x^\frac{1}{2}} \frac{\mu(m)}{m^2}-\sum_{m\leq x^\frac{1}{2}}\mu(m)\left\{\frac{x}{m^2}\right\}
+    \end{equation*}
+\end{unswlem}
+\begin{proof}
+    Consider the sum
+    \begin{equation*}
+        M_2(x) = \sum_{n\leq x} (\mu(n))^2.
+    \end{equation*}
+    By lemma \ref{M2Alt}, we can write this as
+    \begin{equation*}
+        M_2(x) = \sum_{n\leq x}\sum_{m^2|n}\mu(m).
+    \end{equation*}
+    
+    The term $\mu(m)$ occurs in this sum when $m^2$ is a factor of sum integer
+    less than $x$. There are $\left\lfloor \frac{x}{m^2}\right\rfloor$ factors of $m^2$
+    less than $x$, so the term $\mu(m)$ occurs $\lfloor \frac{x}{m^2}\rfloor$
+    times. Hence, we can express $M_2(x)$ as
+    \begin{equation*}
+        M_2(x) = \sum_{m\geq0} \left\lfloor\frac{x}{m^2}\right\rfloor\mu(m)
+    \end{equation*}
+    The terms of this sum vanish when $\left\lfloor \frac{x}{m^2}\right\rfloor = 0$,
+    which occurs when $m^2 > x$. So $M_2(x)$ can be expressed as
+    \begin{equation*}
+        M_2(x) = \sum_{m\leq x^\frac{1}{2}}\left\lfloor\frac{x}{m^2}\right\rfloor\mu(m).
+    \end{equation*}
+    Now write $\left\lfloor\frac{x}{m^2}\right\rfloor = \frac{x}{m^2}-\left\{\frac{x}{m^2}\right\}$
+    and the result follows.
+\end{proof}
+\begin{unswthm}
+    $M_2(x) = \frac{6}{\pi^2}x+\mathcal{O}(x^\frac{1}{2})$.
+\end{unswthm}
+\begin{proof}
+    First note the result,
+    \begin{equation*}
+        \sum_{n\geq 1} \frac{\mu(n)}{n^2} = \frac{1}{\zeta(2)} = \frac{6}{\pi^2}.
+    \end{equation*}
+    
+    
+\end{proof}
+\begin{unswrem}
+    There are $608$ squarefree numbers in $1,2,3,\ldots,1000$. 
+    This is in close agreement with the asymptotic formula,
+    since $6/\pi^2 \approx 0.608$.
+\end{unswrem}
+
+\end{document}
