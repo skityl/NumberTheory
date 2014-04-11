@@ -1,0 +1,133 @@
+\documentclass[10pt]{article}
+\usepackage{amsmath,amssymb,graphicx,color}
+\title{That thing you keep on forgetting}
+\author{}
+\date{}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newenvironment{proof}[1][Proof]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{definition}[1][Definition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{example}[1][Example]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{remark}[1][Remark]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+\newcommand{\qed}{\nobreak \ifvmode \relax \else
+	      \ifdim\lastskip<1.5em \hskip-\lastskip
+		        \hskip1.5em plus0em minus0.5em \fi \nobreak
+				      \vrule height0.75em width0.5em depth0.25em\fi}
+
+
+\topmargin=-20mm
+\textheight=250mm
+\oddsidemargin=-4mm
+\textwidth=166mm
+
+
+
+
+\parskip=5pt
+\parindent=0pt
+
+\setlength{\parindent}{0pt}
+\usepackage{fullpage}
+\usepackage{enumerate}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\isom}{\cong}
+\newcommand{\modulo}[1]{\;\operatorname{mod} #1}
+\newcommand{\Char}{\operatorname{char}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\dist}{\operatorname{dist}_{L^\infty}}
+
+\newcommand{\legendre}[2]{\left(\frac{#1}{#2}\right)}
+
+\begin{document}
+\maketitle{}
+    Let $n$ and $m$ be positive integers. Let
+    $\varphi(x) = n\cdot x$ be a homomorphism
+    on $\mathbb{Z}_m$. 
+    \begin{theorem}
+        $|\ker\varphi| = (n,m)$
+    \end{theorem}
+    \begin{proof}
+        Let $k$ be the size of $\im\varphi$. Then 
+        $k$ is the least positive integer such that $m|nk$. 
+        
+        So $nk$ is the least positive integer 
+        that is a multiple of $m$ and $n$. That is, $k = \operatorname{lcm}(m,n)/n$.
+        
+        Hence $k = m/(n,m)$.
+        
+        
+        %Since $\im\varphi$ is a subgroup of $\mathbb{Z}_m$, 
+        %$k|m$. 
+        
+        %Put $qk = m$. Then $q$ is the maximal divisor of $m$
+        %such that $m|\frac{nm}{q}$. 
+        
+        %Since $m|\frac{nm}{q}$, we must have $q|n$. 
+        
+        %Hence $q|(n,m)$ so $q$ cannot exceed $(n,m)$.
+        %That is $q \leq (n,m)$.
+        
+        %$q$ is the largest divisor of $m$
+        %such that $m|\frac{nm}{q}$. Since $m|\frac{nm}{(n,m)}$, we have $q \geq (n,m)$. 
+        
+        %Hence $q = (n,m)$.
+                
+        So $|\im\varphi| = m/(n,m)$.
+        
+        Thus, $|\ker\varphi| = (n,m)$. $\Box$
+    \end{proof}
+    
+    
+    \begin{example}
+        The multiplicative group $\mathbb{F}_q^*$ is cyclic of
+        order $q-1$. Hence it is isomorphic to $\mathbb{Z}_{q-1}$
+        and the subgroup of $n$th roots of unity has order $(n,q-1)$.
+    \end{example}
+    \begin{example}
+        Let $n$ be an integer such that $\mathbb{Z}_n^*$ is cyclic. Then
+        $\mathbb{Z}_n$ has $(\varphi(n), k)$ $k$th roots of unity.
+    \end{example}
+    \begin{example}
+        Suppose that we have an $n$ sided polygon and $k$ colours of paint.
+        We wish to count the number of distinct ways of painting the sides
+        of the polygon.
+        
+        The symmetry group of the polygon is $\mathbb{Z}_n$ and
+        for each $x \in \mathbb{Z}_n$ the number of colourings
+        invariant under rotation by $x$ is $k^{(n,x)}$. Why?
+        
+        Identify together edges of the polygon that are 
+        congruent under the action of $x$. So identify together
+        elements $a$ and $b$ of $\mathbb{Z}_n$ if $x|a-b$. 
+        
+        Hence the set of equivalence classes
+        is the set of cosets of the subgroup $x\mathbb{Z}_n$. 
+        
+        The subgroup $x\mathbb{Z}_n$ has size $n/(x,n)$.
+        
+        Hence there are $(x,n)$ different colours 
+        in a colouring invariant under $x$, so $k^{(x,n)}$ different
+        colourings.
+        
+        Hence the total number of colourings, by the orbit counting
+        formula (Burnside's lemma) is
+        \begin{equation*}
+            \frac{1}{n}\sum_{r = 0}^{n-1}k^{(n,r)}
+        \end{equation*}
+        
+    \end{example}
+    
+    
+
+    Now never forget it again.
+
+
+\end{document}

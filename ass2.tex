@@ -1,0 +1,369 @@
+\documentclass[10pt]{article}
+\usepackage{amsmath,amssymb,graphicx,color}
+\title{Number theory Assignment 1}
+\author{Edward McDonald}
+\date{}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newenvironment{proof}[1][Proof]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{definition}[1][Definition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{example}[1][Example]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{remark}[1][Remark]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+\newcommand{\qed}{\nobreak \ifvmode \relax \else
+	      \ifdim\lastskip<1.5em \hskip-\lastskip
+		        \hskip1.5em plus0em minus0.5em \fi \nobreak
+				      \vrule height0.75em width0.5em depth0.25em\fi}
+
+
+\topmargin=-20mm
+\textheight=250mm
+\oddsidemargin=-4mm
+\textwidth=166mm
+
+
+
+
+\parskip=5pt
+\parindent=0pt
+
+\setlength{\parindent}{0pt}
+\usepackage{fullpage}
+\usepackage{enumerate}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\isom}{\cong}
+\newcommand{\modulo}[1]{\;\operatorname{mod} #1}
+\newcommand{\Char}{\operatorname{char}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\dist}{\operatorname{dist}_{L^\infty}}
+
+\newcommand{\legendre}[2]{\left(\frac{#1}{#2}\right)}
+
+\begin{document}
+\section*{Question 1}
+For this question $p_k$ denotes the $k$th prime
+and we define $\alpha_k(x)$ as the number of positive integers
+not exceeding $x$ which contain as prime factors
+only $p_i$ for $1\leq i \leq k$.
+
+We wish to show that the sum 
+\begin{equation*}
+    \sum_{n=1}^\infty \frac{1}{p_n}
+\end{equation*}
+diverges.
+
+In order to find a contradiction, suppose the contrary, and choose
+$k$ large enough such that
+\begin{equation*}
+    \sum_{n=k+1}^\infty \frac{1}{p_n} < \frac{1}{2}
+\end{equation*}
+
+\begin{lemma}
+\label{squarefree}
+    There can be no more than $2^k$ square free integers
+    containing only $\{p_1,\ldots,p_k\}$
+    as prime factors.
+\end{lemma}
+\begin{proof}
+    Any number $n$ with prime factors from the set $\{p_1,p_2,\ldots,p_k\}$
+    has a prime factorisation
+    \begin{equation*}
+        n = p_1^{\alpha_1}p_2^{\alpha_2}\cdots p_k^{\alpha_k}
+    \end{equation*}
+    where the exponents $\{\alpha_1,\alpha_2,\ldots\alpha_k\}$
+    are non negative integers.
+    
+    If $n$ is square free, then we cannot have $\alpha_i \geq 2$
+    for any $i$, hence each $\alpha_i \in \{0,1\}$.
+    
+    Therefore, we have two choices for each exponent $\alpha_i$,
+    $1\leq i\leq k$. Hence there are $2^k$ possible 
+    square free integers with only primes up to
+    $p_k$ as factors. $\Box$    
+\end{proof}
+\begin{lemma}
+\label{alphaBound}
+    Let $x>0$ be any positive real number, then $\alpha_k(x) \leq 2^k\sqrt{x}$.
+\end{lemma}
+\begin{proof}
+    Any integer is a product of a perfect square and a square free
+    integer. Suppose that $n < x$ is an integer
+    with only primes up to $p_k$ as prime factors, then
+    there is a perfect square $a^2>0$ and a squarefree integer $b > 0$ 
+    such that
+    \begin{equation*}
+        n = a^2b
+    \end{equation*}
+    There are at most $2^k$ possible choices
+    for $b$ by lemma \ref{squarefree}.
+    
+    If we write the perfect squares in sequence, 
+    \begin{equation*}
+        1^2,\;2^2,\;3^2,\;\ldots
+    \end{equation*}
+    The $r$th term of this sequence will exceed $x$ when $r^2 > x$,
+    so $r > \sqrt{x}$. Hence the first term of this sequence
+    to not exceed $x$ must be $(\lfloor\sqrt{x}\rfloor)^2$. Hence
+    the number of perfect squares less than $x$ must be $\lfloor \sqrt{x}\rfloor < \sqrt{x}$.
+    
+    Hence there are at most $\sqrt{x}$ choices for $a$ and $2^k$ choices
+    for $b$, so the total possible values of $n$ is at most $2^k\sqrt{x}$.
+    
+    Therefore, $\alpha_k(x) \leq 2^k\sqrt{x}$. $\Box$
+\end{proof}
+\begin{theorem}
+    It is impossible that there exists a $k$
+    such that
+    \begin{equation*}
+        \sum_{n=k+1}^\infty\frac{1}{p_n} < \frac{1}{2}
+    \end{equation*}
+\end{theorem}
+\begin{proof}
+    Let $x>0$ be arbitrary. 
+    
+    Suppose that $k$ is large enough such that
+    \begin{equation*}
+        \sum_{n=k+1}^\infty \frac{1}{p_k} <\frac{1}{2}.
+    \end{equation*}
+    
+    Given a prime $p$, the number of integers less than $x$ which contain
+    $p$ as a prime factor must be at most $x/p$, since the $r$th term of the sequence
+    \begin{equation*}
+        p,\;2p,\;3p,\;,\ldots
+    \end{equation*}
+    is less than or equal to $x$ when $rp \leq x$, so there can be at most $r$
+    multiples of $p$ less than $x$.
+    
+    The function $x-\alpha_k(x)$
+    counts the number of integers not exceeding $x$
+    which have as prime factors the numbers $\{p_{k+1},p_{k+2},\ldots\}$.
+    Hence,
+    \begin{equation*}
+        x-\alpha_k(x) \leq \frac{x}{p_{k+1}}+\frac{x}{p_{k+2}}+\frac{x}{p_{k+3}}+\cdots
+    \end{equation*}
+    since each term of the right hand side is an upper bound for the total
+    number of multiples of $p_{k+r}$ less than $x$, for $r\geq 1$.
+    
+    But by our assumption we have
+    \begin{align*}
+        x-\alpha_k(x) &\leq x\sum_{n=k+1}^\infty\frac{1}{p_n}\\
+        &\leq \frac{x}{2}.
+    \end{align*}
+    Rearranging this, we have
+    \begin{equation*}
+        x\leq 2\alpha_k(x).
+    \end{equation*}
+    
+    Lemma \ref{alphaBound} yields,
+    \begin{equation*}
+        x\leq 2^{k+1}\sqrt{x}.
+    \end{equation*}
+    By squaring both sides of the inequality we have,
+    \begin{equation*}
+        x\leq 2^{2k+2}.
+    \end{equation*}
+    This is a contradiction, since $x$ was arbitrary. $\Box$    
+\end{proof}
+
+\section*{Question 2}
+\begin{lemma}
+    If $p$ is an odd prime, and $p|x^2+2$ for some integer $x$, then $p \equiv 1\text{ or }3\modulo{8}$.
+\end{lemma}
+\begin{proof}
+    It is equivalent to $p|x^2+2$ for some integer $x$
+    or that $-2$ is a quadratic residue modulo $p$.
+    
+    So it is equivalent to say that
+    \begin{equation*}
+        \legendre{-2}{p} = 1.
+    \end{equation*}
+    So we simply factor this:
+    \begin{equation*}
+        \legendre{-1}{p}\legendre{2}{p} = 1.
+    \end{equation*}
+    
+    By the corollary to Wilson's theorem
+    in the course notes,
+    \begin{equation*}
+        \legendre{-1}{p} = \begin{cases}
+            1\;\text{ if }p\equiv 1\modulo 4\\
+            -1\;\text{ otherwise.}
+        \end{cases}
+    \end{equation*} 
+    and also from the course notes,
+    \begin{equation*}
+        \legendre{2}{p} = (-1)^{\frac{p^2-1}{8}}
+    \end{equation*}
+    Or in other words,
+    \begin{equation*}
+        \legendre{2}{p} = \begin{cases}
+            1\;\text{ if }p\equiv 1\modulo{8}\\
+            -1\;\text{ if }p\equiv 3\modulo{8}        
+        \end{cases}
+    \end{equation*}
+    Hence we have $\legendre{-2}{p} = 1$ precisely when
+    \begin{itemize}
+        \item{} $p\equiv 1\modulo{4}$ and $p\equiv 1\modulo{8}$, or
+        \item{} $p\equiv 3\modulo{4}$ and $p\equiv 3\modulo{8}$.
+    \end{itemize}
+    However the conditions on $p$ modulo $4$ are redundant, since if $p\equiv 1\modulo{8}$
+    then $p\equiv 1\modulo{4}$
+    and if $p\equiv 3\modulo{8}$ then $p\equiv 3\modulo{4}$.
+    So we can reduce the cases to
+    \begin{itemize}
+        \item{} $p\equiv 1\modulo{8}$, or
+        \item{} $p\equiv 3\modulo{8}$.
+    \end{itemize}
+    As required. $\Box$
+\end{proof}
+\begin{theorem}
+    There are infinitely many primes congruent to $3$ modulo $8$.
+\end{theorem}
+\begin{proof}
+    Suppose that there are finitely many primes congruent to $3$ modulo $8$, and label
+    them as
+    \begin{equation*}
+        S := \{p_1,p_2,\ldots,p_r\}.
+    \end{equation*}
+    Then let
+    \begin{equation*}
+        N := (p_1p_2\cdots p_r)^2+2.
+    \end{equation*}
+    Note that $N$ is odd, since each $p_i$ is odd.
+    
+    By the fundamental theorem of arithmetic, $N$ must have a prime factorisation. Let
+    $p|N$ be prime. Then $p\equiv 1\modulo{8}$ since $p\neq 2$ and for each
+    $p_i\in S$, $N\equiv -2\modulo{p_i}$ so $p$ is not congruent to $3$ modulo $8$.
+    
+    Therefore each prime factor of $p$ is congruent to $1$ modulo $8$. Hence,
+    \begin{equation*}
+        N\equiv 1\modulo{8}.
+    \end{equation*}
+    since if $a\equiv 1\modulo{8}$ and $b\equiv 1\modulo{8}$, then $ab\equiv 1\modulo{8}$.
+    
+    However, since each $p_i\in S$ is congruent to $3$ modulo $8$, we have
+    \begin{align*}
+        N &\equiv (3)^{2r}+2\\
+        &\equiv 9^r+2\\
+        &\equiv 1^r+2\\
+        &\equiv 3\modulo{8}.
+    \end{align*}
+    This is a contradiction. Hence, there are infinitely many primes congruent to $3$
+    modulo $8$. $\Box$
+\end{proof}
+\section*{Question 3}
+For this question, define $\pi^*(x)$
+as the number of powers of prime numbers less than or equal to $x$.
+As usual, $\pi(x)$ is the number of primes less than or equal to $x$.
+\begin{lemma}
+\label{piStarFormula}
+    $\pi^*(x) = \pi(x)+\pi(x^\frac{1}{2})+\pi(x^{\frac{1}{3}})+\cdots+\pi(x^\frac{1}{m})$,
+    where $m$ is the largest integer such that $2^m\leq x$.
+\end{lemma}
+\begin{proof}
+    We can write
+    \begin{equation*}
+        \pi^*(x) = \text{Number of primes not exceeding x }+\text{ Number of prime squares not exceeding x }+\text{ Number of prime
+        cubes not exceeding x} +\cdots
+    \end{equation*}
+    So we need to find in the number of $n$th prime powers not exceeding $x$ for
+    any $n$. See that if $p^n$ is an $n$th prime power less than or equal to $x$,
+    we have $p^n \leq x$, so $p \leq x^\frac{1}{n}$. Similarly, if $p$
+    is a prime with $p \leq x^\frac{1}{n}$, then $p^n\leq x$. Hence
+    every $n$th prime power less than or equal to $x$ corresponds
+    to a prime less than or equal to $x^{\frac{1}{n}}$
+    So the number of $n$th powers of primes less than or equal to $x$
+    is $\pi(x^\frac{1}{n})$.
+    Therefore,
+    \begin{equation*}
+        \pi^*(x) = \sum_{n\geq 1} \pi(x^\frac{1}{n})
+    \end{equation*}
+    The $n$th term of this sum will be zero when $x^\frac{1}{n} < 2$. That is,
+    when $n$ is large enough so that $2^n > x$. So 
+    the final nonzero term in this sum will be $\pi(x^{\frac{1}{m}})$ where
+    $m$ is the largest number such that $2^m \leq x$.
+    This proves the required result. $\Box$
+\end{proof}
+\begin{lemma}
+    $\pi*(x)-\pi(x) \leq \pi(x^\frac{1}{2})+m\pi(x^\frac{1}{3})$, where
+    again $m$ is the largest integer
+    such that $2^m\leq x$.
+\end{lemma} 
+\begin{proof}
+    By lemma \ref{piStarFormula}, 
+    \begin{equation*}
+        \pi^*(x)-\pi(x) = \pi(x^\frac{1}{2})+\pi(x^{\frac{1}{3}})+\cdots+\pi(x^\frac{1}{m})
+    \end{equation*}
+    However $\pi(x^\frac{1}{n}) \leq \pi(x^\frac{1}{3}$ for $n\geq 3$
+    since $\pi$ is an increasing function.
+    
+    So we have 
+    the trivial bound,
+    \begin{align*}
+        \pi^*(x)-\pi(x) &\leq \pi(x^\frac{1}{2})+\pi(x^\frac{1}{3})+\cdots+\pi(x^\frac{1}{3})   \\
+        &= \pi(x^\frac{1}{2})+(m-2)\pi(x^\frac{1}{3}).
+    \end{align*}
+    
+    
+    We can loosen this to
+    \begin{equation*}
+        \pi^*(x)-\pi(x) \leq \pi(x^\frac{1}{2})+m\pi(x^\frac{1}{3}).
+    \end{equation*}
+    This is the required result. $\Box$
+\end{proof}
+
+Now we let $C$ be a positive number such that $\pi(x) \leq C\frac{x}{\log{x}}$
+for $x\geq 2$. Then we have the following result,
+\begin{theorem}
+    $\pi^*(x)-\pi(x)\leq 12C\frac{x^\frac{1}{2}}{\log{x}}$ for $x \geq 2$.
+\end{theorem}
+\begin{proof}
+    Recall that $m$ is the largest integer such that $2^m\leq x$. Hence $m\leq \frac{\log{x}}{\log{2}}$.
+    
+    Then we use the bound,
+    \begin{equation*}
+        \pi^*(x)-\pi(x) \leq \pi(x^\frac{1}{2}) + \frac{\log{x}}{\log{2}}\pi(x^\frac{1}{3})
+    \end{equation*}
+    Now we use the bounds,
+    \begin{align*}
+        \pi(x^\frac{1}{2}) &\leq C\frac{x^\frac{1}{2}}{\log{x^\frac{1}{2}}} = 2C\frac{x^\frac{1}{2}}{\log{x}}\\
+        \pi(x^\frac{1}{3}) &\leq C\frac{x^\frac{1}{3}}{\log{x^\frac{1}{3}}} = 3C\frac{x^\frac{1}{3}}{\log{x}}
+    \end{align*}
+    By combining these results, 
+    \begin{equation*}
+        \pi^*(x)-\pi(x) \leq 2C\frac{x^\frac{1}{2}}{\log{x}}+3C\frac{x^\frac{1}{3}}{\log{2}}.
+    \end{equation*}
+    
+    Now we use the inequality,
+    \begin{equation*}
+        x^\frac{1}{3}\log{x} \leq \frac{6}{e}x^\frac{1}{2}
+    \end{equation*}
+    to find,
+    \begin{equation*}
+        \pi^*(x)-\pi(x) \leq (2C+\frac{18C}{e\log{2}})\frac{x^\frac{1}{2}}{\log{x}}.
+    \end{equation*}
+    
+    We now simply loosen this result by noting that $e>2$ and $\log{2}>3/5$, so
+    \begin{equation*}
+        2+\frac{18}{e\log{2}}\leq 2+\frac{18\cdot5}{2\cdot3} = 12.
+    \end{equation*}
+    Hence,
+    \begin{equation*}
+        \pi^*(x)-\pi(x)\leq 12C\frac{x^\frac{1}{2}}{\log{x}}\text{ for }x \geq 2.
+    \end{equation*}
+    $\Box$
+\end{proof}
+
+\begin{remark}
+    The function $x^\frac{1}{2}/\log{x}$ grows very slowly. Hence
+    the number of prime powers grows very slowly.    
+\end{remark}
+
+\end{document}

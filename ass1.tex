@@ -1,0 +1,448 @@
+\documentclass[10pt]{article}
+\usepackage{amsmath,amssymb,graphicx,color}
+\title{Number theory Assignment 1}
+\author{Edward McDonald}
+\date{}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newenvironment{proof}[1][Proof]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{definition}[1][Definition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{example}[1][Example]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{remark}[1][Remark]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+\newcommand{\qed}{\nobreak \ifvmode \relax \else
+	      \ifdim\lastskip<1.5em \hskip-\lastskip
+		        \hskip1.5em plus0em minus0.5em \fi \nobreak
+				      \vrule height0.75em width0.5em depth0.25em\fi}
+
+
+\topmargin=-20mm
+\textheight=250mm
+\oddsidemargin=-4mm
+\textwidth=166mm
+
+
+
+
+\parskip=5pt
+\parindent=0pt
+
+\setlength{\parindent}{0pt}
+\usepackage{fullpage}
+\usepackage{enumerate}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\isom}{\cong}
+\newcommand{\modulo}[1]{\;\operatorname{mod} #1}
+\newcommand{\Char}{\operatorname{char}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\dist}{\operatorname{dist}_{L^\infty}}
+
+\newcommand{\legendre}[2]{\left(\frac{#1}{#2}\right)}
+
+\begin{document}
+\maketitle{}
+    \section*{Question 1}
+    For this question, let $n$ be a positive integer such that $\mathbb{U}_n$ has primitive roots 
+        (That is, $n = 1,2,4$, a power of an odd prime or double a power of an odd prime).
+    We also let $a$ be an integer coprime to $n$.
+    \subsection*{Part a}
+    \begin{theorem}
+
+        
+        $a \in \mathbb{U}_n$ is a $k$th power in $\mathbb{U}_n$ that is, there is
+        a number $x \in \mathbb{U}_n$ with $x^k \equiv a\modulo{n}$ if and only if
+        \begin{equation*}
+            a^{\frac{\varphi(n)}{d}} \equiv 1\modulo{n}
+        \end{equation*}
+        where $\varphi$ is Euler's totient function and $d := (\varphi(n),k) := \gcd(\varphi(n),k)$.
+                
+    \end{theorem}
+    \begin{proof}
+        
+        First suppose that $a$ is a $k$th power modulo $n$. So choose $x$
+        such that
+        \begin{equation*}
+            a \equiv x^k\modulo{n}.
+        \end{equation*}
+        Note that $x$ must be coprime to $n$ due our assumption
+        that $a$ is coprime to $n$.
+        Then simply raise $a$ to the power $\varphi(n)/d$. So we have
+        \begin{equation*}
+            a^{\frac{\varphi(n)}{d}}\equiv x^{\frac{\varphi(n)k}{d}} \modulo{n}.
+        \end{equation*}
+        However the right hand side is $x^{\varphi(n)}$ raised to the power
+        $k/d$. $k/d$ is a whole number since $d|k$. By Euler's theorem,
+        $x^{\varphi(n)}\equiv 1 \modulo{n}$. Hence,
+        \begin{equation*}
+            a^{\frac{\varphi(n)}{d}} \equiv 1\modulo{n}.
+        \end{equation*} 
+        
+        
+        
+        Conversely, suppose that
+        \begin{equation*}
+            a^{\frac{\varphi(n)}{d}}\equiv 1\modulo{n}
+        \end{equation*}
+        and we wish to find $x$ such that $a\equiv x^k\modulo{n}$. 
+        
+        By assumption, $\mathbb{U}_n$ has a primitive element (a generator). Let
+        $\alpha$ be such a primitive element, and choose $r$ such that
+        \begin{equation*}
+            \alpha^r\equiv a\modulo{n}.
+        \end{equation*}
+        Raise both sides to the power $\varphi(n)/d$, to find
+        \begin{equation*}
+            \alpha^{\frac{r\varphi(n)}{d}}\equiv a^\frac{\varphi(n)}{d}\equiv 1\modulo{n}.
+        \end{equation*}
+        Since $\alpha$ is a primitive element, it must have minimal order $\varphi(n)$. Hence,
+        we must have
+        \begin{equation*}
+            \varphi(n)|\frac{r\varphi(n)}{d}
+        \end{equation*} 
+        So choose $t\in\mathbb{Z}$ such that
+        \begin{equation*}
+            t\varphi(n) = \frac{r\varphi(n)}{d}.
+        \end{equation*}
+        
+        Hence $r = td$. Recall that $d = (\varphi(n),k)$. So by Bezout's lemma, there
+        are integers $p$ and $q$ such that $d = p\varphi(n)+qk$. 
+        
+        Thus,
+        \begin{align*}
+            a&\equiv\alpha^r\\
+            &\equiv \alpha^{td}\\
+            &\equiv \alpha^{tp\varphi(n)+tqk}\\
+            &\equiv \alpha^{tp\varphi(n)}\alpha^{tqk}\\
+            &\equiv \alpha^{tqk}\modulo{n}.
+        \end{align*}
+        So put $x = \alpha^{tq}$ and then $a\equiv x^k\modulo{n}$. $\Box$
+       
+
+
+
+        %First suppose that $a$ is a $k$th power modulo $n$, then since $a \equiv x^k\modulo{n}$ for some $x$, then
+        %simply raise $a$ to the power $\varphi(n)/(k,\varphi(n))$. Hence,
+        %\begin{equation*}
+        %    a^{\frac{\varphi(n)}{(\varphi(n),k)}}\equiv x^{\frac{k\varphi(n)}{(\varphi(n),k)}}\modulo{n}.
+        %\end{equation*}
+        %Note that since $(a,\varphi(n)) = 1$, we must also have $(x,\varphi(n)) = 1$. So we can
+        %apply Euler's theorem, $x^{\varphi(n)} \equiv 1\modulo{n}$. Hence,
+        %\begin{equation*}
+        %    a^{\frac{\varphi(n)}{(\varphi(n),k)}}\equiv1\modulo{n}.
+        %\end{equation*}
+        
+        %Conversely, suppose that 
+        %\begin{equation*}
+        %    a^{\frac{\varphi(n)}{(\varphi(n),k)}}\equiv1\modulo{n}.
+        %\end{equation*}
+        %$\mathbb{U}_n$ has by assumption a primitive element, let $\alpha$ be a primitive
+        %element for $\mathbb{U}_n$. Then choose $r$ such that
+        %\begin{equation*}
+        %    a \equiv \alpha^{r}\modulo{n}.
+        %\end{equation*}
+                
+        %Now raise $a$ to the power $\varphi(n)/(\varphi(n),k)$,
+        %\begin{equation*}
+        %    a^{\frac{\varphi(n)}{(\varphi(n),k)}}\equiv \alpha^{\frac{r\varphi(n)}{(k,\varphi(n))}} \modulo{n}.
+        %\end{equation*}
+        %Hence,
+        %\begin{equation*}
+        %    \alpha^{\frac{r\varphi(n)}{(k,\varphi(n))}} \equiv 1 \modulo{n}.
+        %\end{equation*}
+        %But since $\alpha$ is a generator for the cyclic group $\mathbb{U}_n$, the order
+        %of $\mathbb{U}_n$ must divide $\frac{r\varphi(n)}{(k,\varphi(n))}$. That is, there is an
+        %integer $t$ such that $r\varphi(n) = (k,\varphi(n))\varphi(n)t$ since the order
+        %of $\mathbb{U}_n$ is $\varphi(n)$. So $r = t(k,\varphi(n))$. By Bez\^out's lemma, 
+        %there are integers $p$ and $q$ such that 
+        %\begin{equation*}
+        %    r = t(pk+q\varphi(n)).
+        %\end{equation*}
+       
+        %Therefore, $a \equiv \alpha^r \equiv \alpha^{tpk}\modulo{n}$ since $\alpha^{tq\varphi(n)}\equiv 1\modulo{n}$. 
+        %Thus, $a$ is a $k$th power modulo $n$. $\Box$
+        
+        
+    \end{proof}
+    
+    We now wish to find the \emph{number}
+    of solutions to the equation $x^k \equiv a\modulo{n}$, provided
+    that it has solutions. Note that any two solutions, $x$ and $y$
+    are related by a $k$th root of unity modulo $n$: since if $x^k\equiv y^k \modulo{n}$, then
+    $xy^{-1}$ is a $k$th root of unity. Hence, given a solution
+    $x$ we can find all solutions as $x\zeta$, where $\zeta$
+    is a $k$th root of unity.
+    
+    So to find the number of solutions to the equation, we simply
+    need to find the number of $k$th roots of unity modulo $n$.
+    
+    \begin{lemma}
+        There are $(\varphi(n),k)$ $k$th roots of unity in $\mathbb{U}_n$.
+    \end{lemma}
+    \begin{proof}
+        Consider the group homomorphism $\psi:\mathbb{U}_n\rightarrow\mathbb{U}_n$
+        given by $x\mapsto x^k$.         Le $\alpha$ be a primitive element for $\mathbb{U}_n$.
+        The image of $\psi$ is then
+        \begin{equation*}
+            \{1,\alpha^k,\alpha^{2k},\alpha^{3k},\ldots\}
+        \end{equation*}
+        This is a subgroup of $\mathbb{U}_n$, let its size be $r$. 
+        $r$ must divide the size of $\mathbb{U}_n$, $r|\varphi(n)$, and $r$ is the smallest
+        positive integer such that $\alpha^{kr}\equiv 1\modulo{n}$. 
+        
+        So $kr$ is the smallest multiple of $k$ divisible
+        by $\varphi(n)$. Hence $kr = \operatorname{lcm}(k,\varphi(n))$.
+        So $r = \varphi(n)/(\varphi(n),k)$.
+        
+        %Since $r$ divides $\varphi{n}$, put $r = \varphi(n)/q$. 
+        
+        %Then $\frac{\varphi(n)k}{q}$ is a multiple of $\varphi(n)$, since
+        %$\alpha^{\varphi(n)k/q} \equiv 1\modulo{n}$ and the order of $\alpha$
+        %is $\varphi(n)$. So we can find $t$ such that
+        %\begin{equation*}
+        %    \frac{\varphi(b)k}{q} = t\varphi(n).
+        %\end{equation*} 
+        %Hence $q|k$, and since $q|\varphi(n)$, we must have $q|(k,\varphi(n))$. 
+        
+        %However, since $r$ was defined as the smallest positive number
+        %such that $\alpha^{rk} \equiv 1\modulo{n}$ and $r = \varphi(n)/q$, $q$
+        %must be the greatest number such that $\alpha^{\varphi(n)k/q} \equiv 1\modulo{n}$
+        %with $q | \varphi(n)$. 
+        
+        %We have proved that any such number $q$ must divide $k$ and $\varphi(n)$. 
+        %Hence since $q$ is maximal we must have $q = (k,\varphi(n))$.
+        
+        So the image of $\psi$ has size $r = \varphi(n)/(k,\varphi(n))$.
+        
+        Hence the kernel of $\psi$ has size $(k,\varphi(n))$ by the first isomorphism
+        theorem.
+        
+        The kernel of $\psi$ is exactly the numbers $x$ in $\mathbb{U}_n$
+        such that $x^k \equiv 1\modulo{n}$, so there are $(k,\varphi(n))$ 
+        $k$th roots of unity in $\mathbb{U}_n$. $\Box$
+
+    \end{proof}
+    
+    By the above argument, if the equation $x^k\equiv a\modulo{n}$
+    has solutions then there are exactly $(k,\varphi(n))$ solutions.
+    
+    \subsection*{Part b}
+    \begin{corollary}
+        If $p$ is a prime of the form $6k-1$, then the equation $x^3 \equiv a\modulo{p}$ has a unique solution
+        for every $a$.
+    \end{corollary}
+    \begin{proof}
+        In the case when $(a,p)\neq 1$, then $a \equiv 0\modulo{p}$, and so the equation $x^3\equiv a\modulo{p}$ has a unique
+        solution $x = 0$. The solution is unique because the ring $\mathbb{Z}_p$ is a domain and cannot have nonzero
+        nilpotent elements.
+        
+        For $(a,p) = 1$, we can use the results in part a.
+        
+        Put $p = 6k-1$. Then $\varphi(p) = 6k-2 = 2(3k-1)$. So $\varphi(p)$
+        cannot be a multiple of $3$, since $3k-1$ is one less than a multiple of
+        $3$. Hence, $(3,\varphi(p)) = 1$. Now by Euler's theorem
+        \begin{equation*}
+            a^{\varphi(p)/(3,\varphi(p))} \equiv a^{\varphi(p)} \equiv 1\modulo{p}.
+        \end{equation*}
+        
+        Therefore, the equation $x^3 \equiv a\modulo{p}$ has a solution,
+        and the number of solutions is $(\varphi(p),3) = 1$.
+        
+        That is, for any $a$ the equation $x^3 \equiv a\modulo{p}$ has a
+        unique solution. $\Box$
+        
+        
+    \end{proof}
+   
+    \section*{Question 2}
+    For question $2$, suppose that $q$ is an odd prime such that $p := 2q+1$
+    is also prime. For example, $q = 11$ and $p = 23$. 
+    \begin{lemma}
+        There are $q-1$ primitive roots modulo $p$, $q$ quadratic
+        residues and $q$ quadratic non residues.
+    \end{lemma}
+    \begin{proof}
+        The set $\mathbb{U}_p$ has $\varphi(\varphi(p))$ primitive roots. 
+        Since $p = 2q+1$ is prime, $\varphi(p) = 2q$. As $q$ is odd, 
+        we can compute $\varphi(2q) = \varphi(2)\varphi(q) = q-1$.
+        Hence, there are $\varphi(\varphi(p)) = q-1$ primitive
+        roots for $\mathbb{U}_n$.
+        
+        By Theorem 1.2 in chapter $1$ of the course notes, exactly
+        half of the numbers in $\mathbb{U}_p$ are quadratic residues.
+        Hence, the number of quadratic residues is half of $2q+1-1$. So
+        the number of quadratic residues is $q$, and there must 
+        also be $q$ quadratic non residues.
+    \end{proof}
+    \begin{lemma}
+        A quadratic residue is never a primitive root.
+    \end{lemma}
+    \begin{proof}
+        Suppose that $n$ is an integer, and $a$ is a quadratic
+        residue in $\mathbb{U}_n$. So $a \equiv x^2\modulo{n}$
+        for some $x\in\mathbb{U}_n$. If $a$ is a primitive root,
+        then there is some $k$ such that $x \equiv a^k\modulo{n}$.
+        Hence $a^k \equiv a^{2k}\modulo{n}$ and so $a^k \equiv 1\modulo{n}$. 
+        Hence $x\equiv 1\modulo{n}$, so $a \equiv 1\modulo{n}$ and $a$
+        cannot be a primitive root. $\Box$
+    \end{proof}
+    
+    Since every primitive root is a quadratic non residue, 
+    and here are $q-1$ primitive elements in $\mathbb{U}_p$ and $q$
+    quadratic non residues: there must be exactly one
+    number in $\mathbb{U}_n$ that is a quadratic non residue but
+    not a primitive element.
+    
+    \begin{theorem}
+        $2q \in \mathbb{U}_n$ is not a primitive element.
+    \end{theorem}
+    \begin{proof}
+        Since $p = 2q+1$, $2q\equiv -1\modulo{p}$. Hence $2q$
+        has minimal order $2$, and so cannot be a primitive element
+        for $\mathbb{U}_n$. $\Box$
+    \end{proof}
+    
+    \begin{theorem}
+        $2q$ is a quadratic non residue modulo $p$.
+    \end{theorem}
+    \begin{proof}
+        Since $2q\equiv -1\modulo{p}$, we simply
+        need to show that $-1$ is not a quadratic residue
+        modulo $p$. 
+        
+        By the corollary to Wilson's theorem in the course notes, 
+        $-1$ is a quadratic residue modulo a prime $p$ precisely when $p\equiv 1\modulo{4}$.
+        
+        However, since $q$ is odd, we cannot have $2q+1\equiv 1\modulo{4}$. Hence
+        $p$ is not equal to $1$ modulo $4$. So $-1$ is not a quadratic residue
+        modulo $p$. $\Box$
+    \end{proof}
+    
+    We have therefore shown that the unique quadratic non residue that
+    is not a primitive element in $\mathbb{U}_p$
+    is $2q$.
+    
+    \begin{corollary}
+        The primitive roots of $\mathbb{U}_{23}$
+        are $5,7,10,11,14,15,17,19,20,21$
+    \end{corollary}
+    \begin{proof}
+        We simply need to find the quadratic non residues that
+        are not $-1$, since $23$ is a prime of the form $2q+1$
+        for an odd prime $q = 11$. We have already
+        shown that there must be $q-1 = 10$ primitive roots.
+        
+        So we simply need to find a single primitive root, then
+        all of the odd powers of that primitive root
+        that are not $-1$ are the remaining primitive roots
+        since even powers are quadratic residues.
+        
+        Consider $5$. We can show that $5$ is a primitive
+        root by showing that it it not a quadratic residue.
+        So we compute the Legendre symbol:
+        \begin{equation*}
+            \legendre{5}{23} = \legendre{23}{5}
+        \end{equation*} 
+        by quadratic reciprocity, since $5\equiv 1\modulo{4}$.
+        The right hand side is $\legendre{3}{5}$.
+        By quadratic reciprocity, this is $\legendre{5}{3} = \legendre{-1}{3}$.
+        
+        However by the corollary to Wilson's theorem, $\legendre{-1}{3} = -1$.
+        Hence $5$ is not a quadratic residue modulo 23 and since $5\neq -1$,
+        we can conlude that $5$ is a primitive element.
+        
+        Odd powers of $5$ are easily
+        computed since $5^2\equiv 2\modulo{23}$. Hence the odd powers of $5$ are.
+        \begin{align*}
+            5^3 &\equiv 10\\
+            5^5 &\equiv 20\\
+            5^7 &\equiv 17\\
+            5^9 &\equiv 11\\
+            5^{11} &\equiv 22\equiv -1\\
+            5^{13} &\equiv 21\\
+            5^{15} &\equiv 19\\
+            5^{17} &\equiv 15\\
+            5^{19}&\equiv 7\\
+            5^{21}&\equiv 14
+        \end{align*}
+        where the congruences are modulo $23$ .So excluding $5^{11}\equiv -1$, these are 
+        the primitive elements of $\mathbb{U}_{23}$. $\Box$
+        
+        
+    \end{proof}
+
+    \section*{Question 3}
+    \subsection*{Part a}
+    \begin{theorem}
+        Every number of the form $4n+2$ for some integer $n$
+        is expressible as a sum of three squares, exactly
+        $2$ of which are odd.
+    \end{theorem}
+    \begin{proof}
+        By theorem 1.10 in the course notes, a number can be expressed
+        as a sum of three squares unless it is of the form $4^\alpha(8k+7)$
+        for some integers $\alpha, k$. Since $4n+2$ is not divisible
+        by $4$, we need only show that $4n+2$ is not congruent to $7$
+        modulo $8$.
+        
+        Suppose that $4n+2\equiv 7\modulo{8}$
+        \begin{align*}
+            4n+2&\equiv 7\modulo{8}\\
+            \Rightarrow \;4n&\equiv5 \modulo{8}
+        \end{align*}
+        But then $5 = 4n-8k$ for some integer $k$. This is impossible
+        because $5$ is odd. Hence, $4n+2$ is expressible
+        as a sum of three squares.
+        
+        Suppose that $4n+2 = a^2 + b^2 + c^2$. We cannot have 
+        all $a,b,c$ being even, because then $4|a^2+b^2+c^2$
+        but $4n+2$ is not divisible by $4$. Similarly, if exactly
+        one of $a,b,c$ is odd, then $a^2+b^2+c^2$ is odd, but $4n+2$
+        is not odd. Similarly, if all of $a,b,c$ are odd
+        then $4n+2$ is odd.
+        
+        Hence, the only possible case is that exactly two
+        of $a,b,c$ are even. $\Box$
+    \end{proof}
+    \subsection*{Part b}
+    \begin{theorem}
+        Every odd positive integer can be expressed in the form $a^2+b^2+2c^2$
+        for integers $a,b,c$.
+    \end{theorem}
+    \begin{proof}
+        Suppose that $2n+1$ is any odd positive integer. Then by the preceding
+        theorem there are integers $r,s,t$ such that
+        \begin{equation*}
+            4n+2 = (2r)^2+(2s+1)^2+(2t+1)^2.
+        \end{equation*}
+        Divide through by $2$ and expand, so that we have
+        \begin{equation*}
+            2n+1 = 2r^2+2s^2+2t^2+2s+2t+1.
+        \end{equation*}
+        
+        Note the identity,
+        \begin{equation*}
+            (s+t)^2+(s-t)^2 = 2s^2+2t^2.
+        \end{equation*}
+        
+        So we can express $2n+1$ as
+        \begin{equation*}
+            2n+1 = 2r^2+(s-t)^2+(s+t)^2+2s+2t+1.
+        \end{equation*}
+        Recognise that $(s+t)^2+2s+2t+1 = (s+t+1)^2$, so 
+        \begin{equation*}
+            2n+1 = 2r^2+(s-t)^2+(s+t+1)^2.
+        \end{equation*}
+        This gives the desired decomposition. $\Box$.
+    \end{proof} 
+    
+    
+
+
+\end{document}
