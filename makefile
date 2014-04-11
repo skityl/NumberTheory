@@ -23,7 +23,7 @@ class_update:
 #	cd -;
 	cp -r ../UNSW_Latex/artwork artwork;
 	cp -r ../UNSW_Latex/unswmaths.cls unswmaths.cls
-	
+	cp -r ../UNSW_Latex/unswshortcuts.sty unswshortcuts.sty
 
 
 clean:
