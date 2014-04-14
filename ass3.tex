@@ -186,7 +186,7 @@
     
     Hence, if $n$ has prime factorisation $p_1^{k_1}p_2^{k_2}\cdots p_m^{k_m}$, then
     \begin{equation*}
-        J_k^{-1}(n) = (1-p_1^k)(1-p_2^k)\ldots(1-p_m^k).
+        J_k^{-1}(n) = (1-p_1^{k})(1-p_2^{k})\ldots(1-p_m^{k}).
     \end{equation*}
 \end{proof}
 \section*{Question 3}
@@ -269,9 +269,33 @@
     \begin{equation*}
         \sum_{n\geq 1} \frac{\mu(n)}{n^2} = \frac{1}{\zeta(2)} = \frac{6}{\pi^2}.
     \end{equation*}
+    Hence,
+    \begin{align*}
+        |\sum_{n\leq x^{1/2}} \frac{\mu(n)}{n^2}| &\leq \frac{1}{\zeta(2)}+\sum_{n\geq x^{1/2}} \frac{1}{n^2}\\
+        &= \frac{1}{\zeta(2)}+\mathcal{O}(x^{-1/2}).
+    \end{align*}
+    And also,
+    \begin{align*}
+        |\sum_{m\leq x^\frac{1}{2}}\mu(m)\left\{\frac{x}{m^2}\right\}| &\leq \sum_{m\leq x^{1/2}} 1\\
+        &= \mathcal{O}(x^\frac{1}{2}).
+    \end{align*}
+    So,
+    \begin{equation*}
+        x\sum_{m\leq x^\frac{1}{2}} \frac{\mu(m)}{m^2}-\sum_{m\leq x^\frac{1}{2}}\mu(m)\left\{\frac{x}{m^2}\right\} = x\frac{1}{\zeta(2)}+\mathcal{O}(x^{-\frac{1}{2}})+\mathcal{O}(x^\frac{1}{2}).
+    \end{equation*}
+    
+    Therefore,
+    \begin{equation*}
+        M_2(x) = \frac{6}{\pi^2}x+\mathcal{O}(x^\frac{1}{2})
+    \end{equation*}
+    as required.
     
     
 \end{proof}
+\begin{remark}
+    The previous result states that asymptotically, the proposition
+    of square-free numbers in $[1,x]$ is $6/\pi^2$.
+\end{remark}
 \begin{remark}
     There are $608$ squarefree numbers in $1,2,3,\ldots,1000$. 
     This is in close agreement with the asymptotic formula,
