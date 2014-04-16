@@ -101,9 +101,11 @@
     
     Suppose without loss of generality that $k_1 \geq 2$. Then,
     \begin{equation*}
-        \tau(n) = \prod_{i=1}^n (k_i+1) \geq 3\prod_{i=1}^n (k_i+1) \geq 3\cdot 2^{m-1} > 2^m.
+        \tau(n) = \prod_{i=1}^n (k_i+1) \geq 3\prod_{i=1}^n (k_i+1) \geq 3\cdot 2^{m-1} > 2^m = 2^{\omega(n)}.
     \end{equation*}
-    Hence, it is impossible that $\tau(n) = n$ when $n$ is square free.
+    
+    Hence, $\tau(n) = 2^{\omega(n)}$ if and only if $n$ is squarefree.
+    
 \end{proof} 
 
 \section*{Question 2}
@@ -134,7 +136,8 @@
     So $J_k$ is multiplicative.
 \end{proof}
 \begin{lemma}
-    The function $F(n) = \sum_{d|n}\mu(d)\left(\frac{n}{d}\right)^k$ is multiplicative. 
+    The function $F(n) = \sum_{d|n}\mu(d)\left(\frac{n}{d}\right)^k$ is multiplicative, where 
+    $\mu$ is the M\"obius function.
 \end{lemma}
 \begin{proof}
     The functions $n\mapsto n^k$ and $\mu$ are multiplicative.
@@ -149,7 +152,6 @@
     \begin{equation*}
         F(n) = \sum_{d|n} \mu(d)\left(\frac{n}{d}\right)^k
     \end{equation*}
-    and $\mu$ is the M\"obius function.
 \end{theorem}
 \begin{proof}
     Since $J_k$ and $F$ are multiplicative, they are determined by their values at prime powers. So let $p$ be prime
@@ -159,7 +161,7 @@
     \end{equation*}
     and
     \begin{equation*}
-        J_k(p^\alpha) = (p^\alpha)^k+\mu(p)(p^{\alpha-1})^k = p^{k\alpha}-p^{k(\alpha-1)}.
+        F(p^\alpha) = (p^\alpha)^k+\mu(p)(p^{\alpha-1})^k = p^{k\alpha}-p^{k(\alpha-1)}.
     \end{equation*}
     Hence, $F = J_k$.
 \end{proof}
@@ -229,7 +231,7 @@
     Hence $F(n) = 0$ if $a > 1$ and $F(n) = 1$ if $a = 1$.
     
     Therefore, $F(n) = 0$ when $n$ is not squarefree and $1$ otherwise.
-    Hence $F(n) = (\mu(n))^2)$.
+    Hence $F(n) = (\mu(n))^2$.
 \end{proof}
 \begin{lemma}
     \begin{equation*}
@@ -246,8 +248,8 @@
         M_2(x) = \sum_{n\leq x}\sum_{m^2|n}\mu(m).
     \end{equation*}
     
-    The term $\mu(m)$ occurs in this sum when $m^2$ is a factor of sum integer
-    less than $x$. There are $\left\lfloor \frac{x}{m^2}\right\rfloor$ factors of $m^2$
+    The term $\mu(m)$ occurs in this sum when $m^2$ is a factor of some integer
+    less than $x$. There are $\left\lfloor \frac{x}{m^2}\right\rfloor$ multiples of $m^2$
     less than $x$, so the term $\mu(m)$ occurs $\lfloor \frac{x}{m^2}\rfloor$
     times. Hence, we can express $M_2(x)$ as
     \begin{equation*}
