@@ -19,7 +19,7 @@
 \begin{definition}
     For an integer $n > 0$, $\omega(n)$ is the number of distinct prime factors of $n$, and $\Omega(n)$
     is number of terms in the prime factorisation of $n$, that is, if $n = p_1^{k_1}\ldots p_m^{k_m}$
-    where $p_1,p_2,\ldots,p_m$ are prime, we have $\omega(n) = m$ and $\Omega(n) = k_1+k_2+\cdots+k_m$.
+    where $p_1,p_2,\ldots,p_m$ are distinct primes, we have $\omega(n) = m$ and $\Omega(n) = k_1+k_2+\cdots+k_m$.
     
     $\tau(n)$ denotes the number of factors of $n$.
 \end{definition}
@@ -42,7 +42,7 @@
         d = p_1^{r_1}p_2^{r_2}\ldots p_m^{r_m}
     \end{equation*}
     for $0\leq r_i \leq k_i$ for each $1\leq i \leq m$. Hence we have $k_i+1$
-    possible choices for the exponent of the $k$th prime factor, and so the total
+    possible choices for the exponent of the $i$th prime factor, and so the total
     number of choices for $d$ is
     \begin{equation*}
         \prod_{i=1}^m (k_i+1).
@@ -90,10 +90,10 @@
         p_1^{\alpha_1}p_2^{\alpha_2}\cdots p_m^{\alpha_m}
     \end{equation*}
     with each exponent $\alpha_k \in \{0,1\}$ for $1\leq k \leq m$. Hence there
-    are $2$ choices for each exponent, and hence $2^m = 2^{\omega(n)}$ possible
-    factors of $n$. Then $\tau(n) = 2^{\omega(n)}$.
+    are $2$ choices for each exponent, and hence there are $2^m = 2^{\omega(n)}$ possible
+    factors of $n$. Thus $\tau(n) = 2^{\omega(n)}$.
     
-    Now suppose that $n$ is not squarefree, so $n$ has prime factorisation
+    Now suppose that $n$ is not square-free, so $n$ has prime factorisation
     \begin{equation*}
         n = p_1^{k_1}p_2^{k_2}\cdots p_m^{k_m}.
     \end{equation*}
@@ -101,10 +101,10 @@
     
     Suppose without loss of generality that $k_1 \geq 2$. Then,
     \begin{equation*}
-        \tau(n) = \prod_{i=1}^n (k_i+1) \geq 3\prod_{i=1}^n (k_i+1) \geq 3\cdot 2^{m-1} > 2^m = 2^{\omega(n)}.
+        \tau(n) = \prod_{i=1}^n (k_i+1) \geq 3\prod_{i=2}^n (k_i+1) \geq 3\cdot 2^{m-1} > 2^m = 2^{\omega(n)}.
     \end{equation*}
     
-    Hence, $\tau(n) = 2^{\omega(n)}$ if and only if $n$ is squarefree.
+    Hence, $\tau(n) = 2^{\omega(n)}$ if and only if $n$ is square-free.
     
 \end{proof} 
 
@@ -112,9 +112,9 @@
 \begin{definition}
     For $k$ and $n$ positive integers, define the \emph{Jordan totient function} as
     \begin{equation*}
-        J_k(n) = n^k\prod_{p|n} (1-p^{-k})
+        J_k(n) := n^k\prod_{p|n} (1-p^{-k})
     \end{equation*}
-    where the product is taken over prime factors of $n$, and $J_k(1) = 1$.
+    where the product is taken over prime factors of $n$, and $J_k(1) := 1$.
 \end{definition}
 \begin{lemma}
     $J_k$ is multiplicative.
@@ -134,6 +134,24 @@
         &= J_k(n)J_k(m).
     \end{align*}
     So $J_k$ is multiplicative.
+\end{proof}
+\begin{lemma}
+    Suppose that $f$ and $g$ are multiplicative arithmetic functions. Then $f*g$ is a multiplicative function.
+\end{lemma}
+\begin{proof}
+    Suppose $n$ and $m$ are positive integers with $\gcd(n,m) = 1$. Then
+    \begin{equation*}
+        (f*g)(nm) = \sum_{d|nm} f(d)g\left(\frac{nm}{d}\right).
+    \end{equation*}
+    However the divisors of $nm$ are of the form $rs$ for $\gcd(r,s) = 1$
+    and $r|n$ and $s|n$. Hence,
+    \begin{align*} 
+        (f*g)(nm) &= \sum_{r|n,s|m} f(rs)g\left(\frac{n}{r}\frac{m}{s}\right)\\
+                  &= \sum_{r|n,s|m} f(r)f(s)g\left(\frac{n}{r}\right)g\left(\frac{m}{s}\right)\\
+                  &= \sum_{r|n}\sum_{s|m} f(r)g\left(\frac{n}{r}\right)f(s)g\left(\frac{m}{s}\right)\\
+                  &= (f*g)(n)(f*g)(m). 
+    \end{align*}
+    So $f*g$ is multiplicative.
 \end{proof}
 \begin{lemma}
     The function $F(n) = \sum_{d|n}\mu(d)\left(\frac{n}{d}\right)^k$ is multiplicative, where 
@@ -222,7 +240,7 @@
     
     Any number $n$ can be expressed as a product of a square and a square
     free integer. So let $n = a^2q$, where $a \geq 1$ is an integer 
-    and $q$ is squarefree. Therefore,  $m^2|n$ if and only if $m|a$. Hence,
+    and $q$ is square-free. Therefore,  $m^2|n$ if and only if $m|a$. Hence,
     \begin{align*}
         F(n) &= F(a^2q)\\
              &= \sum_{m|a}\mu(m)\\
@@ -230,7 +248,7 @@
     \end{align*}
     Hence $F(n) = 0$ if $a > 1$ and $F(n) = 1$ if $a = 1$.
     
-    Therefore, $F(n) = 0$ when $n$ is not squarefree and $1$ otherwise.
+    Therefore, $F(n) = 0$ when $n$ is not square-free and $F(n) = 1$ otherwise.
     Hence $F(n) = (\mu(n))^2$.
 \end{proof}
 \begin{lemma}
@@ -271,6 +289,13 @@
     \begin{equation*}
         \sum_{n\geq 1} \frac{\mu(n)}{n^2} = \frac{1}{\zeta(2)} = \frac{6}{\pi^2}.
     \end{equation*}
+    Note also
+    \begin{align*}
+        \sum_{n\geq x^{1/2}} \frac{1}{n^2} &\leq \int_{x^{1/2}-1}^\infty \frac{1}{t^2}dt\\
+        &= \frac{1}{x^{^\frac{1}{2}}-1}\\
+        &= \mathcal{O}(x^{-\frac{1}{2}}).
+    \end{align*}
+    
     Hence,
     \begin{align*}
         |\sum_{n\leq x^{1/2}} \frac{\mu(n)}{n^2}| &\leq \frac{1}{\zeta(2)}+\sum_{n\geq x^{1/2}} \frac{1}{n^2}\\
@@ -283,7 +308,7 @@
     \end{align*}
     So,
     \begin{equation*}
-        x\sum_{m\leq x^\frac{1}{2}} \frac{\mu(m)}{m^2}-\sum_{m\leq x^\frac{1}{2}}\mu(m)\left\{\frac{x}{m^2}\right\} = x\frac{1}{\zeta(2)}+\mathcal{O}(x^{-\frac{1}{2}})+\mathcal{O}(x^\frac{1}{2}).
+        x\sum_{m\leq x^\frac{1}{2}} \frac{\mu(m)}{m^2}-\sum_{m\leq x^\frac{1}{2}}\mu(m)\left\{\frac{x}{m^2}\right\} = x\frac{1}{\zeta(2)}+\mathcal{O}(x^{\frac{1}{2}})+\mathcal{O}(x^\frac{1}{2}).
     \end{equation*}
     
     Therefore,
@@ -295,11 +320,11 @@
     
 \end{proof}
 \begin{remark}
-    The previous result states that asymptotically, the proposition
+    The previous result states that asymptotically, the proportion
     of square-free numbers in $[1,x]$ is $6/\pi^2$.
 \end{remark}
 \begin{remark}
-    There are $608$ squarefree numbers in $1,2,3,\ldots,1000$. 
+    There are $608$ square-free numbers in $1,2,3,\ldots,1000$. 
     This is in close agreement with the asymptotic formula,
     since $6/\pi^2 \approx 0.608$.
 \end{remark}
