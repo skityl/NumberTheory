@@ -1,0 +1,52 @@
+\documentclass{unswmaths}
+
+\usepackage{unswshortcuts}
+
+\begin{document}
+
+\subject{Number Theory}
+\author{Edward McDonald}
+\title{Assignment 4}
+\studentno{3375335}
+
+
+\setlength\parindent{0pt}
+
+\newcommand{\Unit}{\mathbb{U}}
+
+\unswtitle{}
+
+\section*{Question 1}
+    \begin{lemma}
+        Let $n > 0$. Suppose that $\{\chi_j\}_{j=1}^{\varphi(n)}$ are the characters
+        of $\Unit_n$. Then for each $a,b\in \Unit_n$, we have the following orthogonality
+        relation
+        \begin{equation*}
+            \sum_{j=1}^{\varphi(n)} \chi_j(a)\overline{\chi_j(b)} = \begin{cases}
+                \varphi(n)\text{ if }a = b\\
+                0\text{ overwise.}
+            \end{cases}
+        \end{equation*}
+    \end{lemma}
+    \begin{proof}
+        Since for each $j$, $\overline{\chi_j(b)} = \chi_j(b^{-1})$, the sum
+        \begin{equation*}
+            \sum_{j=1}^{\varphi(n)} \chi_j(a)\overline{\chi_j(b)}
+        \end{equation*}
+        simplifies to
+        \begin{equation*}
+            \left(\sum_{j=1}^{\varphi(n)}\chi_j\right)(ab^{-1}).
+        \end{equation*}
+        Hence it is sufficient to prove that
+        \begin{equation*}
+            \left( \sum_{j=1}^{\varphi(n)} \chi_j\right)(a) = \begin{cases}
+                \varphi(n)\text{ if }a = 1\\
+                0\text{ otherwise.}
+            \end{cases}
+        \end{equation*}
+        
+        If $a = 1$, then for each $j$, $\chi_j(a) = 1$, so clearly
+    \end{proof}
+    
+
+\end{document}
