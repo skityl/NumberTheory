@@ -124,8 +124,44 @@
     \begin{proof}
         We have the identity,
         \begin{equation*}
-            
+            L(1,\chi(4)) = \int_0^1 \frac{\lambda(t)}{1-t^4}\;dt
         \end{equation*}
+        where
+        \begin{align*}
+            \lambda(t) &= \sum_{n=1}^4 \chi_4(n)t^{n-1}\\
+            &= 1-t^2.
+        \end{align*}
+        Hence,
+        \begin{align*}
+            L(1,\chi_4) &= \int_0^1 \frac{1-t^2}{1-t^4}\;dt\\
+            &= \int_0^1 \frac{1}{1+t^2}\;dt\\
+            &= \tan^{-1}(1)-\tan^{-1}(0)\\
+            &= \frac{\pi}{4}.
+        \end{align*}        
+    \end{proof}
+    
+    \begin{theorem}
+        $L(1,\chi_6) = \frac{\pi}{2\sqrt{3}}$
+    \end{theorem}
+    \begin{proof}
+        Once again we use the identity,
+        \begin{equation*}
+            L(1,\chi_6) = \int_0^1 \frac{\lambda(t)}{1-t^6}\;dt
+        \end{equation*}
+        where now $\lambda(t)= \sum_{n=1}^6 \chi_6(n)t^{n-1} = 1-t^4$. So
+        \begin{equation*}
+            L(1,\chi_6) = \int_0^1 \frac{1+t^2}{1+t^2+t^4}\;dt.
+        \end{equation*}
+        We can evaluate this integral simply by noting that
+        \begin{equation*}
+            \frac{1+t^2}{1+t^2+t^4} = \frac{1}{2}\left(\frac{1}{1+t+t^2}+\frac{1}{1-t+t^2}\right).
+        \end{equation*}
+        Then we have
+        \begin{align*}
+            L(1,\chi_6) &= \frac{1}{2}\int_0^1 \frac{1}{1+t+t^2}\;dt+\frac{1}{2}\int_0^1 \frac{1}{1-t+t^2}\;dt\\
+            &= \frac{1}{2}(\frac{2}{\sqrt{3}}\tan^{-1}(\frac{2}{\sqrt{3}}\frac{3}{2})-\frac{2}{\sqrt{3}}\tan^{-1}(\frac{2}{\sqrt{3}}\frac{1}{2}))+\frac{1}{2}(\frac{2}{\sqrt{3}}\tan^{-1}(\frac{2}{\sqrt{3}}\frac{1}{2})-\frac{2}{\sqrt{3}}\tan^{-1}(-\frac{2}{\sqrt{3}}\frac{1}{2}))\\
+            &= \frac{\pi}{2\sqrt{3}}
+        \end{align*}
     \end{proof}
 
 \end{document}
