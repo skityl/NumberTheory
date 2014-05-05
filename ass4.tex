@@ -13,11 +13,13 @@
 \setlength\parindent{0pt}
 
 \newcommand{\Unit}{\mathbb{U}}
+\newcommand{\modulo}[1]{\;\operatorname{mod}\;#1}
 
 \unswtitle{}
 
 \section*{Question 1}
     \begin{lemma}
+        \label{charOrth}
         Let $n > 0$. Suppose that $\{\chi_j\}_{j=1}^{\varphi(n)}$ are the characters
         of $\Unit_n$. Then for each $a,b\in \Unit_n$, we have the following orthogonality
         relation
@@ -29,24 +31,101 @@
         \end{equation*}
     \end{lemma}
     \begin{proof}
-        Since for each $j$, $\overline{\chi_j(b)} = \chi_j(b^{-1})$, the sum
+        Since each $\chi_i$ is a group homomorphism to the unit circle,
+        we note the relation $\overline{\chi_j(b)} = \chi_j(b^{-1})$. 
+        
+        Let $k \in \{2,\ldots,\varphi(n)\}$. Then we simply permute
+        the sum
         \begin{equation*}
-            \sum_{j=1}^{\varphi(n)} \chi_j(a)\overline{\chi_j(b)}
+            \sum_{j=1}^{\varphi(n)} \chi_j(a)\chi_j(b^{-1})
         \end{equation*}
-        simplifies to
+        as
         \begin{equation*}
-            \left(\sum_{j=1}^{\varphi(n)}\chi_j\right)(ab^{-1}).
+            \sum_{j=1}^{\varphi(n)} \chi_j(a)\chi_k(a)\chi_j(b^{-1})\chi_{k}(b^{-1}).
         \end{equation*}
-        Hence it is sufficient to prove that
+        These sums are equal since the characters of $\Unit_n$ form a group, and pointwisely
+        multiplying by $\chi_k$ simply permute the elements of the group. Then we have
         \begin{equation*}
-            \left( \sum_{j=1}^{\varphi(n)} \chi_j\right)(a) = \begin{cases}
-                \varphi(n)\text{ if }a = 1\\
-                0\text{ otherwise.}
+            \sum_{j=1}^{\varphi(n)} \chi_j(ab^{-1}) = \chi_k(ab^{-1})\sum_{j=1}^{\varphi(n)} \chi_j(ab^{-1}).
+        \end{equation*}
+        If $a \neq b$, then since $k \neq 2$, we can find $k$ such that $\chi_k(ab^{-1}) \neq 1$. Hence
+        \begin{equation*}
+            \sum_{j=1}^{\varphi(n)} \chi_j(ab^{-1}) = 0
+        \end{equation*}
+        when $a\neq b$.
+        
+        If $a = b$, then we evaluate,
+        \begin{align*}
+            \sum_{j=1}^{\varphi(n)} \chi_j(ab^{-1}) &= \sum_{j=1}^{\varphi(n)} 1\\
+            &= \varphi(n).
+        \end{align*}
+    \end{proof}
+    \begin{lemma}
+        Now suppose that $\chi_i:\Ntrl \rightarrow \Cplx$ are the Dirichlet characters on $\Unit_n$ for $i = 1,2,\ldots \varphi(n)$. Then we have for $a \in \Ntrl$ and $b\in \Unit_n$,
+        \begin{equation*}
+            \sum_{j=1}^{\varphi(n)} \chi_j(a)\overline{\chi_j(b)} = \begin{cases}
+                \varphi(n)\text{ if }a \equiv b\modulo{n}\\
+                0\text{ overwise.}
             \end{cases}
         \end{equation*}
-        
-        If $a = 1$, then for each $j$, $\chi_j(a) = 1$, so clearly
+    \end{lemma}
+    \begin{proof}
+        This follows from lemma \ref{charOrth} for $n \equiv a \modulo{n}$, 
     \end{proof}
     
+    
+    \begin{lemma}
+        Let $\chi$ be a Dirichlet character, then
+        
+    \end{lemma}
+    
+    \section*{Question 2}
+    \begin{proposition}
+        Suppose $\chi$ is a Dirichlet character. Then
+        \begin{equation*}
+            \frac{1}{L(s,\chi)} = \sum_{n=1}^\infty \frac{\chi(n)\mu(n)}{n^s}
+        \end{equation*}
+    \end{proposition}
+    \begin{proof}
+        We can verify this by simply computing 
+        \begin{equation*}
+            L(s,\chi)\sum_{n=1}^\infty \frac{\chi(n)\mu(n)}{n^s}
+        \end{equation*}
+        By definition,
+        \begin{align*}
+            L(s,\chi)\sum_{n=1}^\infty \frac{\chi(n)\mu(n)}{n^s} &= \sum_{n=1}^\infty \frac{\chi(n)}{n^s}\sum_{n=1}^\infty \frac{\chi(n)\mu(n)}{n^s}\\
+            &= \sum_{n=1}^\infty \frac{1}{n^s}\sum_{d|n} \chi\left(\frac{n}{d}\right)\chi(d)\mu(d)\\
+            &= \sum_{n=1}^\infty \frac{1}{n^s}\sum_{d|n} \mu(d).
+        \end{align*}
+        Where the last line follows since characters are completely multiplicative. Now we use the identity
+        \begin{equation*}
+            \sum_{d|n}\mu(d) = I(n).
+        \end{equation*}
+        So,
+        \begin{equation*}
+            L(s,\chi)\sum_{n=1}^\infty \frac{\chi(n)\mu(n)}{n^s} = \sum_{n=1}^\infty \frac{I(n)}{n^s} = 1.
+        \end{equation*}
+        This completes the proof.
+    \end{proof}
+    
+    \section*{Question 3}
+    We consider the unique nonprincipal  dirichlet characters $\chi_4$ and $\chi_6$ modulo $4$ and $6$ respectively. That is, we have
+    \begin{equation*}
+        \chi_i(n) = \begin{cases}
+            1\text{ if }n \equiv 1 \modulo{i}\\
+            -1\text{ if }n \equiv -1 \modulo{i}\\
+            0\text{ otherwise.}
+        \end{cases}
+    \end{equation*}
+    For $i = 4,6$.
+    \begin{theorem}
+        $L(1,\chi_4) = \frac{\pi}{4}$
+    \end{theorem}
+    \begin{proof}
+        We have the identity,
+        \begin{equation*}
+            
+        \end{equation*}
+    \end{proof}
 
 \end{document}
