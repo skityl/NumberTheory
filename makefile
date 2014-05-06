@@ -1,6 +1,6 @@
 READ = evince
 COMP = pdflatex
-NUM = 3
+NUM = 4
 
 ass$(NUM).pdf: ass$(NUM).tex
 	$(COMP) $<
@@ -18,7 +18,7 @@ ques: assignment_$(NUM)_14.pdf
 	$(READ) $<
 
 class_update:
-	cd ..; \
+	cd ..; 
 	git submodule update --init --recursive;
 #	cd -;
 	cp -r ../UNSW_Latex/artwork artwork;
