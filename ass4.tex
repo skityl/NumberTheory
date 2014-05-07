@@ -20,6 +20,7 @@
 
     
     \begin{definition}
+    \label{allChars}
         We have the following characters of $\Unit_5$:
         \\
         \\        
@@ -37,65 +38,100 @@
     
 
 \section*{Question 1}
-
-
-
-    \begin{lemma}
-        \label{charOrth}
-        Let $n > 0$. Suppose that $\{\chi_j\}_{j=1}^{\varphi(n)}$ are the characters
-        of $\Unit_n$. Then for each $a,b\in \Unit_n$, we have the following orthogonality
-        relation
-        \begin{equation*}
-            \sum_{j=1}^{\varphi(n)} \chi_j(a)\overline{\chi_j(b)} = \begin{cases}
-                \varphi(n)\text{ if }a = b\\
-                0\text{ otherwise.}
-            \end{cases}
-        \end{equation*}
-    \end{lemma}
-    \begin{proof}
-        Since each $\chi_i$ is a group homomorphism to the unit circle,
-        we note the relation $\overline{\chi_j(b)} = \chi_j(b^{-1})$. 
-        
-        Let $k \in \{2,\ldots,\varphi(n)\}$. Then we simply permute
-        the sum
-        \begin{equation*}
-            \sum_{j=1}^{\varphi(n)} \chi_j(a)\chi_j(b^{-1})
-        \end{equation*}
-        as
-        \begin{equation*}
-            \sum_{j=1}^{\varphi(n)} \chi_j(a)\chi_k(a)\chi_j(b^{-1})\chi_{k}(b^{-1}).
-        \end{equation*}
-        These sums are equal since the characters of $\Unit_n$ form a group, and pointwisely
-        multiplying by $\chi_k$ simply permute the elements of the group. Then we have
-        \begin{equation*}
-            \sum_{j=1}^{\varphi(n)} \chi_j(ab^{-1}) = \chi_k(ab^{-1})\sum_{j=1}^{\varphi(n)} \chi_j(ab^{-1}).
-        \end{equation*}
-        If $a \neq b$, then since $k \neq 2$, we can find $k$ such that $\chi_k(ab^{-1}) \neq 1$. Hence
-        \begin{equation*}
-            \sum_{j=1}^{\varphi(n)} \chi_j(ab^{-1}) = 0
-        \end{equation*}
-        when $a\neq b$.
-        
-        If $a = b$, then we evaluate,
-        \begin{align*}
-            \sum_{j=1}^{\varphi(n)} \chi_j(ab^{-1}) &= \sum_{j=1}^{\varphi(n)} 1\\
-            &= \varphi(n).
-        \end{align*}
-    \end{proof}
-    \begin{lemma}
-    \label{charOrth2}
-        Now suppose that $\chi_i:\Ntrl \rightarrow \Cplx$ are the Dirichlet characters on $\Unit_n$ for $i = 1,2,\ldots \varphi(n)$. Then we have for $a \in \Ntrl$ and $b\in \Unit_n$,
-        \begin{equation*}
-            \sum_{j=1}^{\varphi(n)} \chi_j(a)\overline{\chi_j(b)} = \begin{cases}
-                \varphi(n)\text{ if }a \equiv b\modulo{n}\\
-                0\text{ otherwise.}
-            \end{cases}
-        \end{equation*}
-    \end{lemma}
-    \begin{proof}
-        This follows from lemma \ref{charOrth}...
-    \end{proof}
+\begin{lemma}
+    We extend each of the characters from definition \ref{allChars} to $\mathbb{Z}^+$ as
+    a Dirichlet character. Then for $n > 0$ and $b \in \Unit_5$, 
+    \begin{equation*}
+        \sum_{i=1}^4 \chi_i(n)\overline{\chi_i(b)} = \begin{cases}
+            4\text{ if }n\equiv b\modulo{5}\\
+            0\text{ otherwise.}
+        \end{cases}
+    \end{equation*}
+\end{lemma}
+\begin{proof}
+    Since Dirichlet characters are periodic, we only need consider $1 \leq n \leq 5$. If $n = 5$, then 
+    by definition $\chi_i(n) = 0$.
     
+    So we need only consider $n \in \Unit_5$, and so $n\equiv b\modulo{5}$ means simply that $n = b$. 
+    
+    Note that $\overline{\chi_i(b)} = \chi_i(b^{-1})$, where $1 \leq b^{-1} \leq 4$ is the inverse modulo $5$.
+    
+    Then for $1 \leq n \leq 5$, the sum
+    \begin{equation*}
+        \sum_{i=1}^4 \chi_i(n)\overline{\chi_i(b)}
+    \end{equation*}
+    can be rewritten as
+    \begin{equation*}
+        \sum_{i=1}^4 \chi_i(nb^{-1}) \modulo{5})
+    \end{equation*}
+    So it is sufficient to prove
+    \begin{equation*}
+        \sum_{i=1}^4 \chi_i(a) = \begin{cases}
+            4\text{ if }a = 1\\
+            0\text{ otherwise.}
+        \end{cases}
+    \end{equation*}
+    However, this is apparent by observing that the columns of the character table in definition \ref{allChars} sum to zero
+    except for the far left column.
+\end{proof}
+
+
+%    \begin{lemma}
+%        \label{charOrth}
+%        Let $n > 0$. Suppose that $\{\chi_j\}_{j=1}^{\varphi(n)}$ are the characters
+%        of $\Unit_n$. Then for each $a,b\in \Unit_n$, we have the following orthogonality
+%        relation
+%        \begin{equation*}
+%            \sum_{j=1}^{\varphi(n)} \chi_j(a)\overline{\chi_j(b)} = \begin{cases}
+%                \varphi(n)\text{ if }a = b\\
+%                0\text{ otherwise.}
+%            \end{cases}
+%        \end{equation*}
+%    \end{lemma}
+%    \begin{proof}
+%        Since each $\chi_i$ is a group homomorphism to the unit circle,
+%        we note the relation $\overline{\chi_j(b)} = \chi_j(b^{-1})$. 
+%        
+%        Let $k \in \{2,\ldots,\varphi(n)\}$. Then we simply permute
+%        the sum
+%        \begin{equation*}
+%            \sum_{j=1}^{\varphi(n)} \chi_j(a)\chi_j(b^{-1})
+%        \end{equation*}
+%        as
+%        \begin{equation*}
+%            \sum_{j=1}^{\varphi(n)} \chi_j(a)\chi_k(a)\chi_j(b^{-1})\chi_{k}(b^{-1}).
+%        \end{equation*}
+%        These sums are equal since the characters of $\Unit_n$ form a group, and pointwisely
+%        multiplying by $\chi_k$ simply permute the elements of the group. Then we have
+%        \begin{equation*}
+%            \sum_{j=1}^{\varphi(n)} \chi_j(ab^{-1}) = \chi_k(ab^{-1})\sum_{j=1}^{\varphi(n)} \chi_j(ab^{-1}).
+%        \end{equation*}
+%        If $a \neq b$, then since $k \neq 2$, we can find $k$ such that $\chi_k(ab^{-1}) \neq 1$. Hence
+%        \begin{equation*}
+%            \sum_{j=1}^{\varphi(n)} \chi_j(ab^{-1}) = 0
+%        \end{equation*}
+%        when $a\neq b$.
+%        
+%        If $a = b$, then we evaluate,
+%        \begin{align*}
+%            \sum_{j=1}^{\varphi(n)} \chi_j(ab^{-1}) &= \sum_{j=1}^{\varphi(n)} 1\\
+%            &= \varphi(n).
+%        \end{align*}
+%    \end{proof}
+%    \begin{lemma}
+%    \label{charOrth2}
+%        Now suppose that $\chi_i:\Ntrl \rightarrow \Cplx$ are the Dirichlet characters on $\Unit_n$ for $i = 1,2,\ldots \varphi(n)$. Then we have for $a \in \Ntrl$ and $b\in \Unit_n$,
+%        \begin{equation*}
+%            \sum_{j=1}^{\varphi(n)} \chi_j(a)\overline{\chi_j(b)} = \begin{cases}
+%                \varphi(n)\text{ if }a \equiv b\modulo{n}\\
+%                0\text{ otherwise.}
+%            \end{cases}
+%        \end{equation*}
+%    \end{lemma}
+%    \begin{proof}
+%        This follows from lemma \ref{charOrth}...
+%    \end{proof}
+%    
 
     \begin{lemma}
         For $\Re(s) > 1$, 
@@ -242,7 +278,7 @@
         by taking a linear combination of equations \ref{eulerL} as follows,
         \begin{align*}
             \sum_{i=1}^4 \log(L(s,\chi_i))\overline{\chi_i(a)} &= \sum_{\pprime} \frac{1}{p^s}\left(\sum_{i=1}^4 \chi_i(p)\overline{\chi_i(a)}\right) + \sum_{i=1}^4 R_i(s)\overline{\chi_i(a)}\\
-            &= \sum_{\pprime, p\equiv a\modulo{p}} \frac{1}{p^s} + R(s).
+            &= 4\sum_{\pprime, p\equiv a\modulo{p}} \frac{1}{p^s} + R(s).
         \end{align*}
         where $R(s) := \sum_{i=1}^4 R_i(s)\overline{\chi_i(a)}$, and by the triangle inequality $|R(s)| < 4$.
         
