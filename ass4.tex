@@ -62,7 +62,7 @@
     \end{equation*}
     can be rewritten as
     \begin{equation*}
-        \sum_{i=1}^4 \chi_i(nb^{-1}) \modulo{5})
+        \sum_{i=1}^4 \chi_i(nb^{-1} \modulo{5})
     \end{equation*}
     So it is sufficient to prove
     \begin{equation*}
@@ -101,7 +101,7 @@
 %        \begin{equation*}
 %            \sum_{j=1}^{\varphi(n)} \chi_j(a)\chi_k(a)\chi_j(b^{-1})\chi_{k}(b^{-1}).
 %        \end{equation*}
-%        These sums are equal since the characters of $\Unit_n$ form a group, and pointwisely
+%        These sums are equal since the characters of $\Unit_n$ form a group, and point-wisely
 %        multiplying by $\chi_k$ simply permute the elements of the group. Then we have
 %        \begin{equation*}
 %            \sum_{j=1}^{\varphi(n)} \chi_j(ab^{-1}) = \chi_k(ab^{-1})\sum_{j=1}^{\varphi(n)} \chi_j(ab^{-1}).
@@ -134,6 +134,7 @@
 %    
 
     \begin{lemma}
+    \label{charOrth}
         For $\Re(s) > 1$, 
         \begin{equation*}
             \frac{1}{6} < L(s,\chi_2) < 1.
@@ -151,9 +152,9 @@
         \end{equation*}
         where each term in brackets is of the form,
         \begin{equation*}
-            \frac{1}{k}+\frac{1}{(k+1)^s}-\frac{1}{(k+2)^s}-\frac{1}{(k+4)^s} > 0.
+            \frac{1}{k^s}+\frac{1}{(k+1)^s}-\frac{1}{(k+2)^s}-\frac{1}{(k+4)^s} > 0.
         \end{equation*}
-        So we are subtracting a positive number from $1$. Hence, $L(s,\chi_2) > 1$. 
+        So we are subtracting a positive number from $1$. Hence, $L(s,\chi_2) < 1$. 
         
         To prove the second inequality, bracket the sum in \ref{Lchi2} as
         \begin{equation*}
@@ -177,11 +178,11 @@
             \Re(L(s,\chi_3)) = \Re(L(s,\chi_4)) = 1-(\frac{1}{4^s}-\frac{1}{6^s})-(\frac{1}{9^s}-\frac{1}{11^s})-\cdots
         \end{equation*}
         So we are subtracting positive terms of the form $\frac{1}{k^s}-\frac{1}{(k+2)^s}$ from $1$, hence $\Re(L(s,\chi_3)) < 1$
-        and $\Re(L(s,\chi_4)) > 1$.
+        and $\Re(L(s,\chi_4)) < 1$.
         
-        Now bracket the sum from the third term onwards, 
+        Now bracket the sum in groups of two from the third term onwards,     
         \begin{equation*}
-            \Re(L(s,\chi_3)) = \Re(L(s,\chi_4)) = 1-\frac{1}{4^s}+(\frac{1}{6^s}-\frac{1}{9^s})+(\frac{1}{11^s}-\cdots
+            \Re(L(s,\chi_3)) = \Re(L(s,\chi_4)) = 1-\frac{1}{4^s}+\left(\frac{1}{6^s}-\frac{1}{9^s}\right)+\left(\frac{1}{11^s}-\frac{1}{14^s}\right)+\cdots
         \end{equation*}
         So each bracketed term is of the form $\frac{1}{k^s}-\frac{1}{(k+3)^s}$, which is positive. So $\Re(L(s,\chi_3)) = \Re(L(s,\chi_4)) > 1-\frac{1}{4^s} > \frac{3}{4}$
         for $\Re(s) > 1$.
@@ -212,7 +213,7 @@
     
     \begin{lemma}
     \label{euler}
-        If $\chi$ is a dirichlet character, then for $\Re(s) > 1$,
+        If $\chi$ is a Dirichlet character, then for $\Re(s) > 1$,
         \begin{equation*}
             \log(L(s,\chi)) = \sum_\pprime \frac{\chi(p)}{p^s} + R(s)
         \end{equation*}
@@ -274,7 +275,7 @@
         \label{eulerL}
             \log(L(s,\chi_i)) = \sum_{\pprime} \frac{\chi_i(p)}{p^s}+R_i(s)
         \end{equation*}
-        with $|R_i(s)| < 1$. By lemma \ref{charOrth2}, we can extract primes congruent to $a$ modulo $5$
+        with $|R_i(s)| < 1$. By lemma \ref{charOrth}, we can extract primes congruent to $a$ modulo $5$
         by taking a linear combination of equations \ref{eulerL} as follows,
         \begin{align*}
             \sum_{i=1}^4 \log(L(s,\chi_i))\overline{\chi_i(a)} &= \sum_{\pprime} \frac{1}{p^s}\left(\sum_{i=1}^4 \chi_i(p)\overline{\chi_i(a)}\right) + \sum_{i=1}^4 R_i(s)\overline{\chi_i(a)}\\
@@ -283,7 +284,7 @@
         where $R(s) := \sum_{i=1}^4 R_i(s)\overline{\chi_i(a)}$, and by the triangle inequality $|R(s)| < 4$.
         
         So since $L(s,\chi_1) \rightarrow \infty$ as $s\rightarrow 1$, and the remaining terms are bounded, we
-        conlude that the series
+        conclude that the series
         \begin{equation*}
             \sum_{\pprime, p\equiv a\modulo{p}} \frac{1}{p^s}
         \end{equation*}
@@ -326,7 +327,7 @@
     \end{proof}
     
     \section*{Question 3}
-    We consider the unique nonprincipal  dirichlet characters $\chi_4$ and $\chi_6$ modulo $4$ and $6$ respectively. That is, we have
+    We consider the unique non-principal  Dirichlet characters $\chi_4$ and $\chi_6$ modulo $4$ and $6$ respectively. That is, we have
     \begin{equation*}
         \chi_i(n) = \begin{cases}
             1\text{ if }n \equiv 1 \modulo{i}\\
@@ -376,7 +377,10 @@
         Then we have
         \begin{align*}
             L(1,\chi_6) &= \frac{1}{2}\int_0^1 \frac{1}{1+t+t^2}\;dt+\frac{1}{2}\int_0^1 \frac{1}{1-t+t^2}\;dt\\
-            &= \frac{1}{2}(\frac{2}{\sqrt{3}}\tan^{-1}(\frac{2}{\sqrt{3}}\frac{3}{2})-\frac{2}{\sqrt{3}}\tan^{-1}(\frac{2}{\sqrt{3}}\frac{1}{2}))+\frac{1}{2}(\frac{2}{\sqrt{3}}\tan^{-1}(\frac{2}{\sqrt{3}}\frac{1}{2})-\frac{2}{\sqrt{3}}\tan^{-1}(-\frac{2}{\sqrt{3}}\frac{1}{2}))\\
+            &= \frac{1}{2}\int_0^1 \frac{1}{\left(t+\frac{1}{2}\right)^2+\frac{3}{4}}\;dt+\frac{1}{2}\int_0^1 \frac{1}{\left(t-\frac{1}{2}\right)^2+\frac{3}{4}}\;dt\\
+            &= \frac{1}{2}\left(\frac{2}{\sqrt{3}}\tan^{-1}\left(\frac{2}{\sqrt{3}}\frac{3}{2}\right)-\frac{2}{\sqrt{3}}\tan^{-1}\left(\frac{2}{\sqrt{3}}\frac{1}{2}\right)\right)\\
+            &\;\;\;+\frac{1}{2}\left(\frac{2}{\sqrt{3}}\tan^{-1}\left(\frac{2}{\sqrt{3}}\frac{1}{2}\right)-\frac{2}{\sqrt{3}}\tan^{-1}\left(-\frac{2}{\sqrt{3}}\frac{1}{2}\right)\right)\\
+            &= \frac{1}{\sqrt{3}}\left(\frac{\pi}{6}+\frac{\pi}{3}\right)\\
             &= \frac{\pi}{2\sqrt{3}}
         \end{align*}
     \end{proof}
