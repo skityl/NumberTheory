@@ -28,3 +28,4 @@ cp -r ../UNSW_Latex/unswshortcuts.sty unswshortcuts.sty
 
 clean:
 rm -f *.log *.aux *~
+
