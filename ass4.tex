@@ -14,6 +14,7 @@
 
 \newcommand{\Unit}{\mathbb{U}}
 \newcommand{\modulo}[1]{\;\operatorname{mod}\;#1}
+\newcommand{\pprime}{{p\text{ prime}}}
 
 \unswtitle{}
 
@@ -82,11 +83,12 @@
         \end{align*}
     \end{proof}
     \begin{lemma}
+    \label{charOrth2}
         Now suppose that $\chi_i:\Ntrl \rightarrow \Cplx$ are the Dirichlet characters on $\Unit_n$ for $i = 1,2,\ldots \varphi(n)$. Then we have for $a \in \Ntrl$ and $b\in \Unit_n$,
         \begin{equation*}
             \sum_{j=1}^{\varphi(n)} \chi_j(a)\overline{\chi_j(b)} = \begin{cases}
                 \varphi(n)\text{ if }a \equiv b\modulo{n}\\
-                0\text{ overwise.}
+                0\text{ otherwise.}
             \end{cases}
         \end{equation*}
     \end{lemma}
@@ -126,7 +128,7 @@
     \begin{lemma}
         For $\Re(s) > 1$,
         \begin{equation*}
-            \frac{3}{4} < \Re(L(s,\chi_3)),\Re(L(s,\chi_4)) < 1.
+            \frac{3}{4} < \Re(L(s,\chi_3)) = \Re(L(s,\chi_4)) < 1.
         \end{equation*}
     \end{lemma}
     \begin{proof}
@@ -145,14 +147,117 @@
         \begin{equation*}
             \Re(L(s,\chi_3)) = \Re(L(s,\chi_4)) = 1-\frac{1}{4^s}+(\frac{1}{6^s}-\frac{1}{9^s})+(\frac{1}{11^s}-\cdots
         \end{equation*}
-        So each bracketed term is of the form $\frac{1}{k^s}-\frac{1}{(k+3)^s}$, which is positive. So $\Re(L(s,\chi_3)) = \Re(L(s,\chi_4)) > 1-\frac{1}{4^s} > \frac{3}{4}$.
+        So each bracketed term is of the form $\frac{1}{k^s}-\frac{1}{(k+3)^s}$, which is positive. So $\Re(L(s,\chi_3)) = \Re(L(s,\chi_4)) > 1-\frac{1}{4^s} > \frac{3}{4}$
+        for $\Re(s) > 1$.
     \end{proof}
     \begin{lemma}
-        For $\Re(s) > 1$, 
+        For $\frac{3}{2} > \Re(s) > 1$, 
         \begin{equation*}
-            \Im(L(s,\chi_3)) = \Im(L(s,\chi_4))
+            \frac{1}{2\sqrt{2}}-\frac{1}{3} < \Im(L(s,\chi_3)) = \Im(L(s,\chi_4)) < \frac{1}{2}
         \end{equation*}
     \end{lemma}
+    \begin{proof}
+        By definition,
+        \begin{equation*}
+            \Im(L(s,\chi_3)) = \Im(L(s,\chi_4)) = \frac{1}{2^s}-\frac{1}{3^s}+\frac{1}{7^s}-\frac{1}{8^s}+\cdots
+        \end{equation*}
+        If we bracket this sum in pairs from the second term onwards,
+        \begin{equation*}
+            \Im(L(s,\chi_3)) = \Im(L(s,\chi_4)) = \frac{1}{2^s}-\left(\frac{1}{3^s}-\frac{1}{7^s}\right)-\left(\frac{1}{8^s}-\frac{1}{12^s}\right)-\cdots
+        \end{equation*}
+        We are subtracting terms of the form $\frac{1}{k^s}-\frac{1}{(k+4)^s} > 0$ from $\frac{1}{2^s} < \frac{1}{2}$. Hence $\Im(L(s,\chi_3)) = \Im(L(s,\chi_4)) < \frac{1}{2}$.
+        
+        Now if we bracket in pairs from the third term onwards,
+        \begin{equation*}
+            \Im(L(s,\chi_3)) = \Im(L(s,\chi_4)) = \frac{1}{2^s}-\frac{1}{3^s}+\left(\frac{1}{7^s}-\frac{1}{8^s}\right)+\cdots
+        \end{equation*}
+        we are adding terms of the form $\frac{1}{k^s}-\frac{1}{(k+1)^s} > 0$ to $\frac{1}{2^s}-\frac{1}{3^s}$, hence for $\frac{3}{2} > \Re(s) > 1$, $\Im(L(s,\chi_4)) = \Im(L(s,\chi_3)) > \frac{1}{2\sqrt{2}}-\frac{1}{3}$
+    \end{proof} 
+    
+    \begin{lemma}
+    \label{euler}
+        If $\chi$ is a dirichlet character, then for $\Re(s) > 1$,
+        \begin{equation*}
+            \log(L(s,\chi)) = \sum_\pprime \frac{\chi(p)}{p^s} + R(s)
+        \end{equation*}
+        where $|R(s)| < 1$.
+    \end{lemma}
+    \begin{proof}
+        We use the Euler product identity,
+        \begin{equation*}
+            L(s,\chi) = \prod_{\pprime}\left(1-\frac{\chi(p)}{p^s}\right)^{-1}.
+        \end{equation*}
+        Since $\Re(s) > 1$, for any prime $p$, $0 < 1- \frac{1}{p^s} < 1$, so we may expand
+        $\log(1-\frac{1}{p^s})$ as a power series,
+        \begin{align*}
+            \log(L(s,\chi)) &= -\sum_{\pprime} \log\left(1-\frac{\chi(p)}{p^s}\right)\\
+            &= \sum_{\pprime} \sum_{n = 1}^\infty \frac{1}{n}\frac{\chi(p)^n}{p^{ns}}\\
+            &= \sum_{\pprime} \frac{\chi(p)}{p^s} + \sum_{\pprime} \sum_{n=2}^\infty \frac{1}{n}\frac{\chi(p)^n}{p^{ns}}
+        \end{align*}
+        So define
+        \begin{equation*}
+            R(s) = \sum_{\pprime} \sum_{n=2}^\infty \frac{1}{n}\frac{\chi(p)^n}{p^{ns}}.
+        \end{equation*}
+        By the triangle inequality,
+        \begin{equation*}
+            |R(s)| \leq \sum_{\pprime} \sum_{n=2}^\infty \frac{1}{np^{ns}}
+        \end{equation*}
+        since for any $p$, $|\chi(p)| \leq 1$. Now we simply further bound for any $n > 1$,
+        \begin{equation*}
+            \frac{1}{np^{ns}} \leq \frac{1}{p^{ns}}
+        \end{equation*}
+        so that
+        \begin{align*}
+            |R(s)| &\leq \sum_{\pprime} \sum_{n=2}^\infty \frac{1}{p^{ns}}\\
+            &= \sum_{\pprime} \frac{p^{-2s}}{1-p^{-s}}\\
+            &= \sum_{\pprime} \frac{1}{p^s(p^s-1)}
+        \end{align*}
+        This is strictly bounded by,
+        \begin{equation*}
+            \sum_{n=2}^\infty \frac{1}{n^s(n^s-1)}.
+        \end{equation*}
+        Since $\Re(s) > 1$, we conclude that
+        \begin{align*}
+            |R(s)| &< \sum_{n=2}^\infty \frac{1}{n(n-1)}\\
+            &= \sum_{n=2}^\infty \frac{1}{n-1}-\frac{1}{n}\\
+            &= 1.
+        \end{align*}
+        Where the last equality follows since the sum telescopes.
+    \end{proof}
+    
+    \begin{theorem}
+        If $a \in \Unit_5$, then the sum
+        \begin{equation*}
+            \sum_{\pprime, p \equiv a \modulo{5}} \frac{1}{p}
+        \end{equation*}
+        diverges, and hence there are infinitely many primes congruent to $a$ modulo $5$.
+    \end{theorem}
+    \begin{proof}
+        For the Dirichlet characters $\chi_i$ of $\Unit_5$ for $i = 1,2,3,4$, from lemma \ref{euler} we know that
+        \begin{equation*}
+        \label{eulerL}
+            \log(L(s,\chi_i)) = \sum_{\pprime} \frac{\chi_i(p)}{p^s}+R_i(s)
+        \end{equation*}
+        with $|R_i(s)| < 1$. By lemma \ref{charOrth2}, we can extract primes congruent to $a$ modulo $5$
+        by taking a linear combination of equations \ref{eulerL} as follows,
+        \begin{align*}
+            \sum_{i=1}^4 \log(L(s,\chi_i))\overline{\chi_i(a)} &= \sum_{\pprime} \frac{1}{p^s}\left(\sum_{i=1}^4 \chi_i(p)\overline{\chi_i(a)}\right) + \sum_{i=1}^4 R_i(s)\overline{\chi_i(a)}\\
+            &= \sum_{\pprime, p\equiv a\modulo{p}} \frac{1}{p^s} + R(s).
+        \end{align*}
+        where $R(s) := \sum_{i=1}^4 R_i(s)\overline{\chi_i(a)}$, and by the triangle inequality $|R(s)| < 4$.
+        
+        So since $L(s,\chi_1) \rightarrow \infty$ as $s\rightarrow 1$, and the remaining terms are bounded, we
+        conlude that the series
+        \begin{equation*}
+            \sum_{\pprime, p\equiv a\modulo{p}} \frac{1}{p^s}
+        \end{equation*}
+        becomes arbitrarily large as $s\rightarrow 1$. Hence, 
+        the sum
+        \begin{equation*}
+            \sum_{\pprime, p\equiv a\modulo{p}} \frac{1}{p}
+        \end{equation*}
+        diverges.
+    \end{proof} 
     
     
     \section*{Question 2}
