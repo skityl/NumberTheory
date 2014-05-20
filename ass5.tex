@@ -1,0 +1,247 @@
+\documentclass{unswmaths}
+
+\usepackage{unswshortcuts}
+
+\begin{document}
+
+\subject{Number Theory}
+\author{Edward McDonald}
+\title{Assignment 5}
+\studentno{3375335}
+
+
+\setlength\parindent{0pt}
+
+\newcommand{\Unit}{\mathbb{U}}
+\newcommand{\modulo}[1]{\;\operatorname{mod}\;#1}
+\newcommand{\pprime}{{p\text{ prime}}}
+
+\unswtitle{}
+
+
+\section*{Question 1}
+    \begin{lemma}
+    \label{zetaBounds}
+        For $s > 1$, 
+        \begin{equation*}
+            \frac{1}{s-1} \leq \zeta(s) \leq 1+\frac{1}{s-1}
+        \end{equation*}
+    \end{lemma}
+    \begin{proof}
+        We use the formula,
+        \begin{equation*}
+            \zeta(s) = \frac{s}{s-1}-s\int_{1}^\infty \frac{\{x\}}{x^{s+1}}\;dx.
+        \end{equation*}
+        Then since for $x \geq 1$, $\frac{\{x\}}{x^{s+1}} \geq 0$, and $s > 1$, we have
+        \begin{equation*}
+            \zeta(s) \leq \frac{s}{s-1} = 1 + \frac{1}{s-1}.
+        \end{equation*}
+        
+        Now, using $\{x\} \leq 1$, we have
+        \begin{equation*}
+            s\int_1^\infty \frac{\{x\}}{x^{s+1}}\;dx \leq \int_{1}^\infty sx^{-s-1}\;dx = 1.
+        \end{equation*}
+        So,
+        \begin{equation*}
+            \zeta(s) \geq \frac{s}{s-1}-1 = \frac{1}{s-1}.
+        \end{equation*}
+    \end{proof}
+    
+    \begin{lemma}
+        Hence,
+        \begin{equation*}
+            \lim_{s\rightarrow 1^+} (s-1)\zeta(s) = 1.
+        \end{equation*}
+    \end{lemma}
+    \begin{proof}
+        By lemma \ref{zetaBounds}, 
+        \begin{equation*}
+            1 \leq (s-1)\zeta(s) \leq (s-1)+1
+        \end{equation*}
+        for $s > 1$. Then by the pinching theorem,
+        \begin{equation*}
+            1 \leq \lim_{s\rightarrow 1^+} (s-1)\zeta(s) \leq 1+\lim_{s\rightarrow 1^+}(s-1) = 1.
+        \end{equation*}
+        Hence,
+        \begin{equation*}
+            \lim_{s\rightarrow 1^+} (s-1)\zeta(s) = 1.
+        \end{equation*}      
+    \end{proof}
+    
+    \begin{lemma}
+    \label{zetaLimit}
+        \begin{equation*}
+            \lim_{s\rightarrow 1^+} \frac{\log\zeta(s)}{\log\frac{1}{s-1}} = 1.
+        \end{equation*}
+    \end{lemma}
+    \begin{proof}
+        By lemma \ref{zetaBounds}, 
+        \begin{equation*}
+            \frac{1}{s-1} \leq \zeta(s) \leq 1+\frac{1}{s-1} = \frac{s}{s-1}.
+        \end{equation*}
+        So take logarithms,
+        \begin{equation*}
+            \log\frac{1}{s-1} \leq \log\zeta(s) \leq \log(s) +\log\frac{1}{s-1}
+        \end{equation*}
+        Assume that $s < 2$, so that $\log\frac{1}{s-1} > 0$. Now divide by $\log\frac{1}{s-1}$,
+        \begin{equation*}
+            1 \leq \frac{\log\zeta(s)}{\log\frac{1}{s-1}} \leq 1 - \frac{\log(s)}{\log(s-1)}
+        \end{equation*}
+        Now as $s\rightarrow 1^+$, $\frac{\log(s)}{\log(s-1)}\rightarrow 0$.
+        Hence by the pinching theorem,
+        \begin{equation*}
+            \lim_{s\rightarrow 1^+} \frac{\log\zeta(s)}{-\log\frac{1}{s-1}} = 1.
+        \end{equation*}
+    \end{proof}
+    
+    \begin{theorem}
+        The Dirichlet density of the set of all primes,
+        \begin{equation*}
+            \lim_{s\rightarrow 1^+} \frac{\sum_{{\pprime}} \frac{1}{p^s}}{\log\frac{1}{s-1}}
+        \end{equation*}
+        is $1$. 
+    \end{theorem}
+    \begin{proof}
+        We may write 
+        \begin{equation*}
+            \log\zeta(s) = -\sum_{\pprime} \log\left(1-p^{-s}\right) = \sum_{\pprime}\frac{1}{p^s}+R(s)
+        \end{equation*}
+        where $|R(s)| < 1$, as covered in lectures.
+        
+        Hence,
+        \begin{equation*}
+            \lim_{s\rightarrow 1^+} \frac{\sum_{\pprime}\frac{1}{p^s}}{\log\frac{1}{s-1}} = \lim_{s\rightarrow 1^+} \frac{\log\zeta(s)-R(s)}{\log\frac{1}{s-1}}
+        \end{equation*}
+        So since $|R(s)| \leq 1$, we have
+        \begin{equation*}
+            \lim_{s\rightarrow 1^+} \frac{R(s)}{\log\frac{1}{s-1}} = 0.
+        \end{equation*}
+        Hence,
+        \begin{equation*}
+            \lim_{s\rightarrow 1^+} \frac{\sum_{\pprime}\frac{1}{p^s}}{\log\frac{1}{s-1}} = \lim_{s\rightarrow 1^+} \frac{\log\zeta(s)}{\log\frac{1}{s-1}} = 1
+        \end{equation*}
+        by lemma \ref{zetaLimit}. 
+    \end{proof}
+    
+    \section*{Question 2}
+    \begin{lemma}
+    \label{q2a}
+        If $p$ is prime, and $s > 2$, then
+        \begin{equation*}
+            \sum_{n\geq 0} \frac{\varphi(p^n)}{p^{ns}} = \frac{1-p^{-s}}{1-p^{1-s}}
+        \end{equation*}
+    \end{lemma}
+    \begin{proof}
+        The sum
+        \begin{equation*}
+            \sum_{n=0}^\infty \frac{\varphi(p^n)}{p^{ns}}
+        \end{equation*}
+        Can be written as a geometric series, since $\varphi(p^n) = p^n-p^{n-1}$ for $n > 0$,
+        \begin{equation*}
+            \sum_{n=0}^\infty \frac{\varphi(p^n)}{p^{ns}} = 1+\sum_{n=1}^\infty \frac{p^n-p^{n-1}}{p^{ns}}
+        \end{equation*}
+        So this is simply,
+        \begin{equation*}
+            \sum_{n\geq 0} \frac{\varphi(p^n)}{p^{ns}} = 1+\sum_{n=1}^\infty \frac{1}{p^{n(s-1)}} - \frac{1}{p}\sum_{n=1}^\infty \frac{1}{p^{n(s-1)}}
+        \end{equation*}
+        Hence,
+        \begin{equation*}
+            \sum_{n\geq 0} \frac{\varphi(p^n)}{p^{{ns}}} = 1+\frac{p^{1-s}}{1-p^{1-s}}-\frac{p^{-s}}{1-p^{1-s}} = \frac{1-p^{-s}}{1-p^{1-s}}.
+        \end{equation*}
+    \end{proof}
+    \begin{theorem}
+    So for $s > 2$, 
+        \begin{equation*}
+            \sum_{n = 1}^\infty \frac{\varphi(n)}{n^s}  = \frac{\zeta(s-1)}{\zeta(s)}
+       \end{equation*}
+    \end{theorem}
+    \begin{proof}
+        Since $\varphi$ is a mulltiplicative function, we have the Euler product formula,
+        \begin{equation*}
+            \sum_{n=1}^\infty \frac{\varphi(n)}{n^s} = \prod_{\pprime} \left(\sum_{n\geq 0}\frac{\varphi(p^n)}{p^{ns}}\right)
+        \end{equation*}
+        Hence, by lemma \ref{q2a},
+        \begin{equation*}
+            \sum_{n=1}^\infty \frac{\varphi(n)}{n^s} = \prod_{\pprime} \frac{1-p^{-s}}{1-p^{-(s-1}}.
+        \end{equation*}
+        But since,
+        \begin{equation*}
+            \zeta(s) = \prod_{\pprime} (1-p^{-s})^{-1},
+        \end{equation*}
+        this means
+        \begin{equation*}
+            \sum_{n=1}^\infty \frac{\varphi(n)}{n^s} = \frac{\zeta(s-1)}{\zeta(s)}.
+        \end{equation*}
+    \end{proof}
+    
+\section*{Question 3}
+Define
+\begin{equation*}
+    M(x) = \sum_{n\leq x} \mu(n).
+\end{equation*}
+\begin{theorem} 
+\label{zetaInt}
+    For $\Re(s) > 1$,
+    \begin{equation*}
+        \frac{1}{\zeta(s)} = s\int_{1}^\infty M(x)x^{-s-1}\;dx.
+    \end{equation*}
+\end{theorem}
+\begin{proof}
+    Rewrite the formula,
+    \begin{equation*}
+        \frac{1}{\zeta(s)} = \sum_{n=1}^\infty \frac{\mu(n)}{n^s}
+    \end{equation*}
+    as
+    \begin{equation*}
+        \frac{1}{\zeta(s)} = \sum_{n=1}^\infty \int_{n}^\infty s\mu(n)x^{-s-1}\;dx = s\sum_{n=1}^\infty \int_{n}^\infty \mu(n)x^{-s-1}\;dx.
+    \end{equation*}
+    
+    We can now interchange the integral and the sum, 
+    \begin{equation*}
+        \frac{1}{\zeta(s)} = s\int_{1}^\infty \sum_{n\leq x} \mu(n) x^{-s-1}\;dx.
+    \end{equation*}
+    as required.
+\end{proof}
+\begin{lemma}
+    If $M(x) = \mathcal{O}(x^{\frac{1}{2}+\varepsilon})$ for all $\varepsilon > 0$, then
+    the integral in theorem \ref{zetaInt} converges for all $s$ with $\Re(s) > 1/2$.
+\end{lemma}
+\begin{proof}
+    Since $M(x)x^{-s-1} > 0$ for all $x \in (1,\infty)$ it is sufficient to bound the
+    function $x\mapsto M(x)x^{-s-1}$ above.
+    
+    If $M(x) = \mathcal{O}(x^{\frac{1}{2}+\varepsilon})$ for any $\varepsilon > 0$,
+    then there exist constants $a$ and $C$ depending on $\varepsilon$
+    such that $M(x) \leq Cx^{\frac{1}{2}+\varepsilon}$ for all $x > a$. 
+   
+    Then $M(x)x^{-s-1} \leq Cx^{-s-1/2+\varepsilon}$ for $x > a$. So the integral
+    \begin{equation*}
+        \int_{1}^\infty M(x)x^{-s-1}\;dx = \int_{1}^a M(x)x^{-s-1}\;dx+\int_{a}^\infty M(x)x^{-s-1}\;dx
+    \end{equation*}    
+    is finite, since
+    \begin{equation*}
+        \int_{a}^\infty x^{-s-1/2+\varepsilon}
+    \end{equation*}
+    is finite when $s > 1/2+\varepsilon$.
+\end{proof}
+
+\begin{theorem}
+    If $M(x) = \mathcal{O}(x^{\frac{1}{2}+\varepsilon})$ for any $\varepsilon > 0$, then 
+    there are no zeroes of $\zeta(s)$ with $\Re(s) \neq 1/2$ with $\Re(s) \geq 0$.
+\end{theorem}
+\begin{proof}
+    Since the function
+    \begin{equation*}
+        G(s) := s\int_{1}^\infty M(x)x^{-s-1}\;dx
+    \end{equation*}
+    agrees with $1/\zeta(s)$ for $\Re(s) > 1$ and is analytic and if $M(x) = \mathcal{O}(x^{\frac{1}{2}+\varepsilon})$,
+    then this function is defined for $\Re(s) > 1/2+\varepsilon$ for any $\varepsilon > 0$ and so is an analytic continuation 
+    of $\zeta(s)$ to the region $\{s \in \Cplx\;:\;\Re(s) > 1/2\;\}$.
+    
+    Hence, the analytic continuation of $\zeta(s)$ is nonzero in the region $\{s \in \Cplx\;:\;\Re(s) > 1/2\;\}$, and so by the reflection formula, is analytic in the region $\{s\in\Cplx\;:\;\Re(s) \geq 0\;\}$.
+    
+    So $\zeta(s)$ cannot have any zeros with nonnegative real part with real part not equal to $1/2$.
+\end{proof}
+
+
+\end{document}
