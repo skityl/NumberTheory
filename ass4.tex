@@ -163,6 +163,7 @@
         So that we are adding positive terms of the form $\frac{1}{k^s}+\frac{1}{(k+2)^s}-\frac{1}{(k+3)^s}-\frac{1}{(k+4)^s}$ to $1-\frac{1}{2^s}-\frac{1}{3^s} > 1/6$. Hence $L(s,\chi_2) > 1/6$.
     \end{proof}
     \begin{lemma}
+    \label{reBound}
         For $\Re(s) > 1$,
         \begin{equation*}
             \frac{3}{4} < \Re(L(s,\chi_3)) = \Re(L(s,\chi_4)) < 1.
@@ -188,27 +189,28 @@
         for $\Re(s) > 1$.
     \end{proof}
     \begin{lemma}
+    \label{imBound}
         For $\frac{3}{2} > \Re(s) > 1$, 
         \begin{equation*}
-            \frac{1}{2\sqrt{2}}-\frac{1}{3} < \Im(L(s,\chi_3)) = \Im(L(s,\chi_4)) < \frac{1}{2}
+            \frac{1}{2\sqrt{2}}-\frac{1}{3} < |\Im(L(s,\chi_3))| = |\Im(L(s,\chi_4))| < \frac{1}{2}
         \end{equation*}
     \end{lemma}
     \begin{proof}
         By definition,
         \begin{equation*}
-            \Im(L(s,\chi_3)) = \Im(L(s,\chi_4)) = \frac{1}{2^s}-\frac{1}{3^s}+\frac{1}{7^s}-\frac{1}{8^s}+\cdots
+            |\Im(L(s,\chi_3))| = |\Im(L(s,\chi_4))| = \frac{1}{2^s}-\frac{1}{3^s}+\frac{1}{7^s}-\frac{1}{8^s}+\cdots
         \end{equation*}
         If we bracket this sum in pairs from the second term onwards,
         \begin{equation*}
-            \Im(L(s,\chi_3)) = \Im(L(s,\chi_4)) = \frac{1}{2^s}-\left(\frac{1}{3^s}-\frac{1}{7^s}\right)-\left(\frac{1}{8^s}-\frac{1}{12^s}\right)-\cdots
+            |\Im(L(s,\chi_3))| = |\Im(L(s,\chi_4))| = \frac{1}{2^s}-\left(\frac{1}{3^s}-\frac{1}{7^s}\right)-\left(\frac{1}{8^s}-\frac{1}{12^s}\right)-\cdots
         \end{equation*}
-        We are subtracting terms of the form $\frac{1}{k^s}-\frac{1}{(k+4)^s} > 0$ from $\frac{1}{2^s} < \frac{1}{2}$. Hence $\Im(L(s,\chi_3)) = \Im(L(s,\chi_4)) < \frac{1}{2}$.
+        We are subtracting terms of the form $\frac{1}{k^s}-\frac{1}{(k+4)^s} > 0$ from $\frac{1}{2^s} < \frac{1}{2}$. Hence $|\Im(L(s,\chi_3))| = |\Im(L(s,\chi_4))| < \frac{1}{2}$.
         
         Now if we bracket in pairs from the third term onwards,
         \begin{equation*}
-            \Im(L(s,\chi_3)) = \Im(L(s,\chi_4)) = \frac{1}{2^s}-\frac{1}{3^s}+\left(\frac{1}{7^s}-\frac{1}{8^s}\right)+\cdots
+            |\Im(L(s,\chi_3))| = |\Im(L(s,\chi_4))| = \frac{1}{2^s}-\frac{1}{3^s}+\left(\frac{1}{7^s}-\frac{1}{8^s}\right)+\cdots
         \end{equation*}
-        we are adding terms of the form $\frac{1}{k^s}-\frac{1}{(k+1)^s} > 0$ to $\frac{1}{2^s}-\frac{1}{3^s}$, hence for $\frac{3}{2} > \Re(s) > 1$, $\Im(L(s,\chi_4)) = \Im(L(s,\chi_3)) > \frac{1}{2\sqrt{2}}-\frac{1}{3}$
+        we are adding terms of the form $\frac{1}{k^s}-\frac{1}{(k+1)^s} > 0$ to $\frac{1}{2^s}-\frac{1}{3^s}$, hence for $\frac{3}{2} > \Re(s) > 1$, $|\Im(L(s,\chi_4))| = |\Im(L(s,\chi_3))| > \frac{1}{2\sqrt{2}}-\frac{1}{3}$
     \end{proof} 
     
     \begin{lemma}
@@ -286,9 +288,10 @@
         We know that $L(s,\chi_1) \rightarrow \infty$ as $s\rightarrow 1$,
         
         
-        and for $i> 1$, $L(s,\chi_i)$ does not vanish or go to infinity as $s\rightarrow 1^+$. Hence
+        and for $i> 1$, $L(s,\chi_i)$ does not vanish or go to infinity as $s\rightarrow 1^+$ by lemmas
+        \ref{imBound} and \ref{reBound}. Hence
         $\log(L(s,\chi_i))$ is bounded as $s\rightarrow 1^+$ for $i = 2,3,4$. Since $R(s)$ is also
-        bounded,         
+        bounded, so we can
         conclude that the series
         \begin{equation*}
             \sum_{\pprime, p\equiv a\modulo{5}} \frac{1}{p^s}
