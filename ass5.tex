@@ -162,7 +162,7 @@
         \end{equation*}
         Hence, by lemma \ref{q2a},
         \begin{equation*}
-            \sum_{n=1}^\infty \frac{\varphi(n)}{n^s} = \prod_{\pprime} \frac{1-p^{-s}}{1-p^{-(s-1}}.
+            \sum_{n=1}^\infty \frac{\varphi(n)}{n^s} = \prod_{\pprime} \frac{1-p^{-s}}{1-p^{-(s-1)}}.
         \end{equation*}
         But since,
         \begin{equation*}
@@ -196,15 +196,15 @@ Define
         \frac{1}{\zeta(s)} = \sum_{n=1}^\infty \int_{n}^\infty s\mu(n)x^{-s-1}\;dx = s\sum_{n=1}^\infty \int_{n}^\infty \mu(n)x^{-s-1}\;dx.
     \end{equation*}
     
-    We can now interchange the integral and the sum, 
+    We can now interchange the integral and the sum,
     \begin{equation*}
-        \frac{1}{\zeta(s)} = s\int_{1}^\infty \sum_{n\leq x} \mu(n) x^{-s-1}\;dx.
+        \frac{1}{\zeta(s)} = s\int_{1}^\infty\sum_{n\leq x} \mu(n) x^{-s-1}\;dx.
     \end{equation*}
-    as required.
+    This is justified by Fubini's theorem for Riemann-Stieltjes integrals.
 \end{proof}
 \begin{lemma}
     If $M(x) = \mathcal{O}(x^{\frac{1}{2}+\varepsilon})$ for all $\varepsilon > 0$, then
-    the integral in theorem \ref{zetaInt} converges for all $s$ with $\Re(s) > 1/2+\varepsilon$.
+    the integral in theorem \ref{zetaInt} converges for all $s$ with $\Re(s) > 1/2$.
 \end{lemma}
 \begin{proof}
     Since $M(x)x^{-s-1} > 0$ for all $x \in (1,\infty)$ it is sufficient to bound the
@@ -223,6 +223,8 @@ Define
         \int_{a}^\infty x^{-s-1/2+\varepsilon}\;dx
     \end{equation*}
     is finite when $s > 1/2+\varepsilon$.
+    
+    Since $\varepsilon$ is arbitrary, the integral converges for $s > 1/2$.
 \end{proof}
 
 \begin{theorem}
@@ -235,10 +237,20 @@ Define
         G(s) := s\int_{1}^\infty M(x)x^{-s-1}\;dx
     \end{equation*}
     agrees with $1/\zeta(s)$ for $\Re(s) > 1$ and is analytic and if $M(x) = \mathcal{O}(x^{\frac{1}{2}+\varepsilon})$,
-    then this function is defined for $\Re(s) > 1/2+\varepsilon$ for any $\varepsilon > 0$ and so is an analytic continuation 
+    then this function is defined for $\Re(s) > 1/2$. 
+    
+    By Leibniz' rule for differentiating under integrals, the function
+    \begin{equation}
+    \label{anaCont}
+        s\mapsto s\int_{1}^\infty M(x)x^{-s-1}\;dx
+    \end{equation}
+    is analytic.
+    
+    Hence the function in \ref{anaCont} is an analytic continuation 
     of $\zeta(s)$ to the region $\{s \in \Cplx\;:\;\Re(s) > 1/2\;\}$.
     
-    Hence, the analytic continuation of $\zeta(s)$ is nonzero in the region $\{s \in \Cplx\;:\;\Re(s) > 1/2\;\}$, and so by the reflection formula, is analytic in the region $\{s\in\Cplx\;:\;\Re(s) \geq 0\;\}$.
+    Hence, the analytic continuation of $\zeta(s)$ is nonzero in the region $\{s \in \Cplx\;:\;\Re(s) > 1/2\;\}$. 
+    So by the reflection formula, $\zeta(s)$ is nonzero for $0 \leq \Re(s) < 1/2$. 
     
     So $\zeta(s)$ cannot have any zeros with nonnegative real part with real part not equal to $1/2$.
 \end{proof}
