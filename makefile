@@ -1,31 +1,31 @@
 READ = evince
 COMP = pdflatex
-NUM = 4
+NUM = 6
 
 ass$(NUM).pdf: ass$(NUM).tex
-$(COMP) $<
+	$(COMP) $<
 
 read: ass$(NUM).pdf
-$(READ) $<
+	$(READ) $<
 
 spell: ass$(NUM).tex
-ispell $^
+	ispell $^
 
 coffee:
-@echo "No. You drink too much."
+	@echo "No. You drink too much."
 
 ques: assignment_$(NUM)_14.pdf
-$(READ) $<
+	$(READ) $<
 
 class_update:
-cd ..;
-git submodule update --init --recursive;
-# cd -;
-cp -r ../UNSW_Latex/artwork artwork;
-cp -r ../UNSW_Latex/unswmaths.cls unswmaths.cls
-cp -r ../UNSW_Latex/unswshortcuts.sty unswshortcuts.sty
+	cd ..;
+	git submodule update --init --recursive;
+	# cd -;
+	cp -r ../UNSW_Latex/artwork artwork;
+	cp -r ../UNSW_Latex/unswmaths.cls unswmaths.cls
+	cp -r ../UNSW_Latex/unswshortcuts.sty unswshortcuts.sty
 
 
 clean:
-rm -f *.log *.aux *~
+	rm -f *.log *.aux *~
 
