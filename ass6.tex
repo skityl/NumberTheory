@@ -1,0 +1,192 @@
+\documentclass{unswmaths}
+
+\usepackage{unswshortcuts}
+
+\begin{document}
+
+\subject{Number Theory}
+\author{Edward McDonald}
+\title{Assignment 5}
+\studentno{3375335}
+
+
+\setlength\parindent{0pt}
+
+\newcommand{\Unit}{\mathbb{U}}
+\newcommand{\modulo}[1]{\;\operatorname{mod}\;#1}
+\newcommand{\pprime}{{p\text{ prime}}}
+
+\unswtitle{}
+
+
+\section*{Question 1}
+\begin{lemma}
+    For all $x > 0$, $\psi(x) \geq \vartheta(x)$.
+\end{lemma}
+\begin{proof}
+    By definition, since
+    \begin{equation*}
+        \vartheta(x) = \sum_{\pprime, p \leq x} \log{p}
+    \end{equation*}
+    and
+    \begin{equation*}
+        \psi(x) = \sum_{n \leq x} \Lambda(n),
+    \end{equation*}
+    we have
+    \begin{equation*}
+        \psi(x) - \vartheta(x) = \sum_{\pprime, p^n \leq x, n \in \Ntrl} \log{p} \geq 0.
+    \end{equation*}
+\end{proof}
+Hence, since $\psi(x) \leq 2x$, we conclude that $\vartheta(x) \leq 2x$.
+\begin{lemma}
+\label{logInequality}
+    For $x > 0$, $\frac{\log{x}}{x^\alpha}$ has a maximum of $\frac{1}{e\alpha}$ where $\alpha > 0$. 
+\end{lemma}
+\begin{proof}
+    By calculus, the function $f(x) = \frac{\log{x}}{x^\alpha}$ has a unique stationary point at $x = e^{1/\alpha}$. This point
+    must at least be a local maxima, since $f''(e^{1/\alpha}) = -\alpha e^{-(\alpha+2)/\alpha} < 0$. 
+    
+    Indeed, since $f(x) \rightarrow 0$ as $x \rightarrow \infty$, and $f(x) \rightarrow -\infty$ as $x\rightarrow 0$, this
+    must be a global maximum. 
+    
+    Hence, the global maximum of $f$ is $f(e^{1/\alpha}) = \frac{1}{e\alpha}$. 
+\end{proof}
+
+\begin{theorem}
+    For $x > 0$,
+    \begin{equation*}
+        \psi(x)-\vartheta(x) \leq 9x^{\frac{1}{2}}
+    \end{equation*}
+\end{theorem}
+\begin{proof}
+    By definition,
+    \begin{equation*}
+        \psi(x)-\vartheta(x) = \sum_{m\geq 2, p^m \leq x, \pprime} \log{p}.
+    \end{equation*}
+    So rearrange this sum,
+    \begin{equation*}
+        \psi(x)-\vartheta(x) = \sum_{m\geq 2} \sum_{\pprime, p\leq x^{1/m}} \log{p}.
+    \end{equation*}
+    So by the definition of $\vartheta$,
+    \begin{equation*}
+        \psi(x)-\vartheta(x) = \sum_{m\geq 2} \vartheta(x^{1/m}).
+    \end{equation*}
+    However the sum on the right hand side is finite, since for $s < 2$, $\vartheta(s) = 0$. Hence, the sum
+    may be written as
+    \begin{equation*}
+        \psi(x) - \vartheta(x) = \sum_{m=2}^{\rfloor \log_2{x}\lfloor} \vartheta(x^{1/m}).
+    \end{equation*}
+    Since for $m > \rfloor \log_2{x} \lfloor$, $x^{1/m} < 2$. Hence, since $\vartheta(s) \leq 2s$, we conclude
+    \begin{equation*}
+        \psi(x) - \vartheta(x) \leq 2\sum_{m=2}^{\rfloor \log_2{x} \lfloor} x^{\frac{1}{m}}.
+    \end{equation*}
+    Which we rewrite as 
+    \begin{equation*}
+        \psi(x) - \vartheta(x) \leq 2x^{\frac{1}{2}} + 2\sum_{m=3}^{\rfloor \log_2{x} \lfloor} x^{\frac{1}{m}}.
+    \end{equation*}
+    The largest term in the sum on the right hand side is $x^{\frac{1}{3}}$. So we have the bound,
+    \begin{equation*}
+        \psi(x) - \vartheta(x) \leq 2x^{\frac{1}{2}}+2x^{\frac{1}{3}}(\rfloor \log_2{x} \lfloor - 2) \leq 2x^{\frac{1}{2}} + 2x^{\frac{1}{3}} \log_2{x}.
+    \end{equation*}
+    However, we know from lemma \ref{logInequality} with $\alpha = 1/6$ that
+    \begin{equation*}
+        \log{x} \leq \frac{6x^{\frac{1}{6}}}{e}.
+    \end{equation*}
+    Hence,
+    \begin{equation*}
+        \psi(x) - \vartheta(x) \leq 2x^{\frac{1}{2}}+\frac{12}{e\log{2}}x^\frac{1}{2}  = \frac{2e\log{2}+12}{e\log{2}}x^\frac{1}{2}.
+    \end{equation*}
+    The coefficient on the right numerically evaluates as roughly $8.37$. So we have the bound,
+    \begin{equation*}
+        \psi(x) - \vartheta(x) \leq 9x^\frac{1}{2}.
+    \end{equation*}
+\end{proof}
+
+
+\section*{Question 2}
+    \begin{theorem}
+    \label{q2a}
+        \begin{equation*}
+            \lim_{x\rightarrow\infty} \frac{\log{\pi(x)}}{\log{x}} = 1.
+        \end{equation*}
+    \end{theorem}
+    \begin{proof}
+        Since
+        \begin{equation*}
+            \lim_{x\rightarrow\infty} \frac{\pi(x)\log{x}}{x} = 1, 
+        \end{equation*}
+        take a logarithm of both sides,
+        \begin{equation*}
+            \lim_{x\rightarrow\infty} \log\left(\frac{\pi(x)\log{x}}{x}\right) = 0
+        \end{equation*}
+        so that
+        \begin{equation*}
+            \lim_{x\rightarrow\infty} [\log{\pi(x)}+\log{\log{x}}-\log{x}] = 0.
+        \end{equation*}
+        Hence,
+        \begin{equation*}
+            \lim_{x\rightarrow\infty} \log{x}\left[\frac{\log{\pi(x)}}{\log{x}}+\frac{\log{\log{x}}}{\log{x}}-1\right] = 0.
+        \end{equation*}
+        However since $\log{x}$ increases without bound as $x\rightarrow\infty$, we must therefore have
+        \begin{equation*}
+            \lim_{x\rightarrow\infty} \left[\frac{\log{\pi(x)}}{\log{x}}+\frac{\log{\log{x}}}{\log{x}}-1\right] = 0.
+        \end{equation*}
+        By L'H\^opital's rule, $\lim_{x\rightarrow\infty} \frac{\log{\log{x}}}{\log{x}} = 0$. 
+        Hence,
+        \begin{equation*}
+            \lim_{x\rightarrow\infty} [\frac{\log{\pi(x)}}{\log{x}}-1] = 0.
+        \end{equation*}
+        So the result follows.
+    \end{proof}
+    \begin{lemma}
+    \label{q2c}
+        Hence,
+        \begin{equation*}
+            \lim_{x\rightarrow\infty} \frac{\pi(x)\log{\pi(x)}}{x} = 1.
+        \end{equation*}
+    \end{lemma}
+    \begin{proof}
+        This follows from theorem \ref{q2a}. Since
+        \begin{equation*}
+            \lim_{x\rightarrow\infty} \frac{\pi(x)\log{x}}{x} = 1
+        \end{equation*}
+        and
+        \begin{equation*}
+            \lim_{x\rightarrow\infty} \frac{\log{\pi(x)}}{\log{x}} = 1
+        \end{equation*}
+        take a quotient of these limits to obtain,
+        \begin{equation*}
+            \lim_{x\rightarrow\infty} \frac{\pi(x)\log{\pi(x)}}{x} = 1.
+        \end{equation*}
+    \end{proof}
+    \begin{theorem}
+        If $p_n$ denotes the $n$th prime, then
+        \begin{equation*}   
+            \lim_{n\rightarrow\infty} \frac{n\log{n}}{p_n} = 1.
+        \end{equation*}
+    \end{theorem}
+    \begin{proof}
+        From lemma \ref{q2c} 
+        \begin{equation*}
+            \lim_{x\rightarrow\infty} \frac{\pi(x)\log{\pi(x)}}{x} = 1.
+        \end{equation*}
+        Since $\{p_n\}_{n=1}^\infty$ is an increasing sequence, this implies
+        \begin{equation*}
+            \lim_{n\rightarrow\infty} \frac{\pi(p_n)\log{p_n}}{p_n} = 1.
+        \end{equation*}
+        However, because $\pi(p_n) = n$, the result follows.
+    \end{proof}
+\section*{Question 3}
+    \begin{theorem}
+        There are ``roughly" $\pi(n)$ primes between $n^2$ and $(n+1)^2$. More precisely,
+        \begin{equation*}
+            \lim_{n\rightarrow\infty} \frac{\pi((n+1)^2)-\pi(n^2)}{\pi(n)} = 1.
+        \end{equation*}
+    \end{theorem}
+    \begin{proof}
+        
+        
+    \end{proof}
+        
+
+\end{document}
