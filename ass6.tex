@@ -177,16 +177,34 @@ Hence, since $\psi(x) \leq 2x$, we conclude that $\vartheta(x) \leq 2x$.
         However, because $\pi(p_n) = n$, the result follows.
     \end{proof}
 \section*{Question 3}
-    \begin{theorem}
-        There are ``roughly" $\pi(n)$ primes between $n^2$ and $(n+1)^2$. More precisely,
-        \begin{equation*}
-            \lim_{n\rightarrow\infty} \frac{\pi((n+1)^2)-\pi(n^2)}{\pi(n)} = 1.
-        \end{equation*}
-    \end{theorem}
-    \begin{proof}
-        
-        
-    \end{proof}
-        
+    \begin{remark}
+        There are ``roughly" $\pi(n)$ primes between $n^2$ and $(n+1)^2$.
+    \end{remark}
+    This may or may not be true. But we can give a heuristic argument for the scale of $\pi((n+1)^2)-\pi(n^2)$.
+    We can suppose by the prime number theorem that there should be an approximate equivalence,
+    \begin{equation*}
+        \pi((n+1)^2)-\pi(n^2) \approx \frac{(n+1)^2}{\log{[(n+1)^2]}}-\frac{n^2}{\log{(n^2)}}
+    \end{equation*}
+    We may now simplify the right hand side as
+    \begin{equation*}
+        \frac{(n+1)^2\log{n}-n^2\log(n+1)}{2\log{n}\log(n+1)}
+    \end{equation*}
+    We wish to show that this is asymptotically equivalent to $\pi(n)$. Or, by the prime
+    number theorem, we may show that this is asymptotically equivalent to $n/\log{n}$.    
+    
+    We must show that
+    \begin{equation*}
+        \frac{(n+1)^2\log{n}-n^2\log(n+1)}{2\log{n}\log(n+1)} \sim \frac{n}{\log{n}}
+    \end{equation*}
+    
+    That is, it is necessary to prove that
+    \begin{equation*}
+        \lim_{n\rightarrow\infty} \frac{(n+1)^2\log{n}-n^2\log(n+1)}{2n\log(n+1)} = 1
+    \end{equation*}
+    
+    So consider
+    \begin{equation*}
+        \frac{(n+1)^2\log{n}-n^2\log(n+1)}{2n\log(n+1)} 
+    \end{equation*}
 
 \end{document}
