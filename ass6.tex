@@ -6,7 +6,7 @@
 
 \subject{Number Theory}
 \author{Edward McDonald}
-\title{Assignment 5}
+\title{Assignment 6}
 \studentno{3375335}
 
 
@@ -26,7 +26,7 @@
 \begin{proof}
     By definition, since
     \begin{equation*}
-        \vartheta(x) = \sum_{\pprime, p \leq x} \log{p}
+        \vartheta(x) = \sum_{\substack{\pprime,\\ p \leq x}} \log{p}
     \end{equation*}
     and
     \begin{equation*}
@@ -34,8 +34,9 @@
     \end{equation*}
     we have
     \begin{equation*}
-        \psi(x) - \vartheta(x) = \sum_{\pprime, p^n \leq x, n \in \Ntrl} \log{p} \geq 0.
+        \psi(x) - \vartheta(x) = \sum_{\substack{\pprime,\\ p^n \leq x,\\ n \geq 2}} \log{p} \geq 0.
     \end{equation*}
+    Hence, $\psi(x) \geq \vartheta(x)$.
 \end{proof}
 Hence, since $\psi(x) \leq 2x$, we conclude that $\vartheta(x) \leq 2x$.
 \begin{lemma}
@@ -43,16 +44,34 @@ Hence, since $\psi(x) \leq 2x$, we conclude that $\vartheta(x) \leq 2x$.
     For $x > 0$, $\frac{\log{x}}{x^\alpha}$ has a maximum of $\frac{1}{e\alpha}$ where $\alpha > 0$. 
 \end{lemma}
 \begin{proof}
-    By calculus, the function $f(x) = \frac{\log{x}}{x^\alpha}$ has a unique stationary point at $x = e^{1/\alpha}$. This point
-    must at least be a local maxima, since $f''(e^{1/\alpha}) = -\alpha e^{-(\alpha+2)/\alpha} < 0$. 
-    
-    Indeed, since $f(x) \rightarrow 0$ as $x \rightarrow \infty$, and $f(x) \rightarrow -\infty$ as $x\rightarrow 0$, this
-    must be a global maximum. 
-    
-    Hence, the global maximum of $f$ is $f(e^{1/\alpha}) = \frac{1}{e\alpha}$. 
+    For all real $s$,
+    \begin{equation*}
+        e^s \geq s+1.
+    \end{equation*}
+    Hence, $e^{s-1} \geq s$, and so
+    \begin{equation*}
+        e^s \geq es.
+    \end{equation*}
+    Substitute $s = \alpha\log{x}$, and hence
+    \begin{equation*}
+        x^\alpha \geq e\alpha\log{x}.
+    \end{equation*}
+    So we have the inequality,
+    \begin{equation*}
+        \frac{\log{x}}{x^\alpha} \leq \frac{1}{e\alpha}.
+    \end{equation*}
+    This inequality is sharp, since equality is attained for $x = e^\frac{1}{\alpha}$.    
+%    By calculus, the function $f(x) = \frac{\log{x}}{x^\alpha}$ has a unique stationary point at $x = e^{1/\alpha}$. This point
+%    must at least be a local maxima, since $f''(e^{1/\alpha}) = -\alpha e^{-(\alpha+2)/\alpha} < 0$. 
+%    
+%     Indeed, since $f(x) \rightarrow 0$ as $x \rightarrow \infty$, and $f(x) \rightarrow -\infty$ as $x\rightarrow 0$, this
+%     must be a global maximum. 
+%     
+%     Hence, the global maximum of $f$ is $f(e^{1/\alpha}) = \frac{1}{e\alpha}$. 
 \end{proof}
 
 \begin{theorem}
+\label{psiThetaBound}
     For $x > 0$,
     \begin{equation*}
         \psi(x)-\vartheta(x) \leq 9x^{\frac{1}{2}}
@@ -61,11 +80,11 @@ Hence, since $\psi(x) \leq 2x$, we conclude that $\vartheta(x) \leq 2x$.
 \begin{proof}
     By definition,
     \begin{equation*}
-        \psi(x)-\vartheta(x) = \sum_{m\geq 2, p^m \leq x, \pprime} \log{p}.
+        \psi(x)-\vartheta(x) = \sum_{\substack{m\geq 2,\\ p^m \leq x,\\ \pprime}} \log{p}.
     \end{equation*}
     So rearrange this sum,
     \begin{equation*}
-        \psi(x)-\vartheta(x) = \sum_{m\geq 2} \sum_{\pprime, p\leq x^{1/m}} \log{p}.
+        \psi(x)-\vartheta(x) = \sum_{m\geq 2} \left(\sum_{\substack{\pprime,\\ p\leq x^{1/m}}} \log{p}\right).
     \end{equation*}
     So by the definition of $\vartheta$,
     \begin{equation*}
@@ -74,19 +93,19 @@ Hence, since $\psi(x) \leq 2x$, we conclude that $\vartheta(x) \leq 2x$.
     However the sum on the right hand side is finite, since for $s < 2$, $\vartheta(s) = 0$. Hence, the sum
     may be written as
     \begin{equation*}
-        \psi(x) - \vartheta(x) = \sum_{m=2}^{\rfloor \log_2{x}\lfloor} \vartheta(x^{1/m}).
+        \psi(x) - \vartheta(x) \leq \sum_{m=2}^{\lceil \log_2{x}\rceil} \vartheta(x^{1/m}).
     \end{equation*}
-    Since for $m > \rfloor \log_2{x} \lfloor$, $x^{1/m} < 2$. Hence, since $\vartheta(s) \leq 2s$, we conclude
+    Since for $m > \lceil \log_2{x} \rceil$, $x^{1/m} < 2$. Hence, since $\vartheta(s) \leq 2s$, we conclude
     \begin{equation*}
-        \psi(x) - \vartheta(x) \leq 2\sum_{m=2}^{\rfloor \log_2{x} \lfloor} x^{\frac{1}{m}}.
+        \psi(x) - \vartheta(x) \leq 2\sum_{m=2}^{\lceil \log_2{x} \rceil} x^{\frac{1}{m}}.
     \end{equation*}
     Which we rewrite as 
     \begin{equation*}
-        \psi(x) - \vartheta(x) \leq 2x^{\frac{1}{2}} + 2\sum_{m=3}^{\rfloor \log_2{x} \lfloor} x^{\frac{1}{m}}.
+        \psi(x) - \vartheta(x) \leq 2x^{\frac{1}{2}} + 2\sum_{m=3}^{\lceil \log_2{x} \rceil} x^{\frac{1}{m}}.
     \end{equation*}
     The largest term in the sum on the right hand side is $x^{\frac{1}{3}}$. So we have the bound,
     \begin{equation*}
-        \psi(x) - \vartheta(x) \leq 2x^{\frac{1}{2}}+2x^{\frac{1}{3}}(\rfloor \log_2{x} \lfloor - 2) \leq 2x^{\frac{1}{2}} + 2x^{\frac{1}{3}} \log_2{x}.
+        \psi(x) - \vartheta(x) \leq 2x^{\frac{1}{2}}+2x^{\frac{1}{3}}(\lceil \log_2{x} \rceil - 2) \leq 2x^{\frac{1}{2}} + 2x^{\frac{1}{3}} \log_2{x}.
     \end{equation*}
     However, we know from lemma \ref{logInequality} with $\alpha = 1/6$ that
     \begin{equation*}
@@ -99,6 +118,43 @@ Hence, since $\psi(x) \leq 2x$, we conclude that $\vartheta(x) \leq 2x$.
     The coefficient on the right numerically evaluates as roughly $8.37$. So we have the bound,
     \begin{equation*}
         \psi(x) - \vartheta(x) \leq 9x^\frac{1}{2}.
+    \end{equation*}
+\end{proof}
+
+\begin{theorem}
+    We have the logical equivalence,
+    \begin{equation*}
+        \lim_{x\rightarrow\infty} \frac{\psi(x)}{x} = 1 \Longleftrightarrow \lim_{x\rightarrow\infty} \frac{\vartheta(x)}{x} = 1.
+    \end{equation*}
+\end{theorem}
+\begin{proof}
+    From theorem \ref{psiThetaBound}, 
+    \begin{equation*}
+        0 \leq \left| \left(\frac{\psi(x)}{x}-1\right)-\left(\frac{\vartheta(x)}{x}-1\right)\right| \leq 9x^{-\frac{1}{2}}.
+    \end{equation*}
+    By the reverse triangle inequality,
+    \begin{equation*}
+        0 \leq \left| \left|\frac{\psi(x)}{x}-1\right|-\left|\frac{\vartheta(x)}{x}-1\right|\right| \leq 9x^{-\frac{1}{2}}.
+    \end{equation*}
+    So if
+    \begin{equation*}
+        \lim_{x\rightarrow\infty} \frac{\psi(x)}{x} = 1.
+    \end{equation*}
+    Then for any $\varepsilon > 0$, we can find an $N > 0$ such that
+    \begin{equation*}
+        \left|\frac{\psi(x)}{x}-1\right| < \varepsilon
+    \end{equation*}
+    when $x > N$. Choose $M > N$ such that $9M^{-\frac{1}{2}} < \varepsilon$. Let $x > M$, then
+    \begin{equation*}
+        0 \leq \left| \frac{\vartheta(x)}{x}-1\right| \leq 2\varepsilon.
+    \end{equation*}
+    Since $\varepsilon$ is aribitrary, this implies that
+    \begin{equation*}
+        \lim_{x\rightarrow\infty} \frac{\vartheta(x)}{x} = 1.
+    \end{equation*}
+    Similarly, if the above limit holds, then
+    \begin{equation*}
+        \lim_{x\rightarrow\infty} \frac{\psi(x)}{x} = 1.
     \end{equation*}
 \end{proof}
 
@@ -134,7 +190,7 @@ Hence, since $\psi(x) \leq 2x$, we conclude that $\vartheta(x) \leq 2x$.
         By L'H\^opital's rule, $\lim_{x\rightarrow\infty} \frac{\log{\log{x}}}{\log{x}} = 0$. 
         Hence,
         \begin{equation*}
-            \lim_{x\rightarrow\infty} [\frac{\log{\pi(x)}}{\log{x}}-1] = 0.
+            \lim_{x\rightarrow\infty} \left[\frac{\log{\pi(x)}}{\log{x}}-1\right] = 0.
         \end{equation*}
         So the result follows.
     \end{proof}
@@ -154,7 +210,7 @@ Hence, since $\psi(x) \leq 2x$, we conclude that $\vartheta(x) \leq 2x$.
         \begin{equation*}
             \lim_{x\rightarrow\infty} \frac{\log{\pi(x)}}{\log{x}} = 1
         \end{equation*}
-        take a quotient of these limits to obtain,
+        multiply these limits to obtain,
         \begin{equation*}
             \lim_{x\rightarrow\infty} \frac{\pi(x)\log{\pi(x)}}{x} = 1.
         \end{equation*}
@@ -172,7 +228,7 @@ Hence, since $\psi(x) \leq 2x$, we conclude that $\vartheta(x) \leq 2x$.
         \end{equation*}
         Since $\{p_n\}_{n=1}^\infty$ is an increasing sequence, this implies
         \begin{equation*}
-            \lim_{n\rightarrow\infty} \frac{\pi(p_n)\log{p_n}}{p_n} = 1.
+            \lim_{n\rightarrow\infty} \frac{\pi(p_n)\log{\pi(p_n)}}{p_n} = 1.
         \end{equation*}
         However, because $\pi(p_n) = n$, the result follows.
     \end{proof}
@@ -180,7 +236,7 @@ Hence, since $\psi(x) \leq 2x$, we conclude that $\vartheta(x) \leq 2x$.
     \begin{remark}
         There are ``roughly" $\pi(n)$ primes between $n^2$ and $(n+1)^2$.
     \end{remark}
-    This may or may not be true. But we can give a heuristic argument for the scale of $\pi((n+1)^2)-\pi(n^2)$.
+    This may or may not be true. But we can give a heuristic argument for the size of $\pi((n+1)^2)-\pi(n^2)$.
     We can suppose by the prime number theorem that there should be an approximate equivalence,
     \begin{equation*}
         \pi((n+1)^2)-\pi(n^2) \approx \frac{(n+1)^2}{\log{[(n+1)^2]}}-\frac{n^2}{\log{(n^2)}}
@@ -202,9 +258,20 @@ Hence, since $\psi(x) \leq 2x$, we conclude that $\vartheta(x) \leq 2x$.
         \lim_{n\rightarrow\infty} \frac{(n+1)^2\log{n}-n^2\log(n+1)}{2n\log(n+1)} = 1
     \end{equation*}
     
-    So consider
+    So consider the numerator:
     \begin{equation*}
-        \frac{(n+1)^2\log{n}-n^2\log(n+1)}{2n\log(n+1)} 
+        (n+1)^2\log{n}-n^2\log(n+1).
     \end{equation*}
-
+    By a Taylor expansion, we know that $\log(n+1) = \log(n) + \frac{1}{n}+\mathcal{O}\left(\frac{1}{n^2}\right)$. Hence,
+    \begin{equation*}
+        (n+1)^2\log{n}-n^2\log(n+1) = 2n\log{n}+\log{n}-n+\mathcal{O}(1)
+    \end{equation*}
+    Thus,
+    \begin{align*}
+        \lim_{n\rightarrow\infty} \frac{(n+1)^2\log{n}-n^2\log(n+1)}{2n\log(n+1)} &= \lim_{n\rightarrow\infty} \frac{2n\log{n}+\log{n}-n}{2n\log{(n+1)}}\\
+        &= \lim_{n\rightarrow\infty} \frac{\log{n}}{\log{(n+1)}}+\lim_{n\rightarrow\infty} \frac{\log{n}-n}{2n\log{(n+1)}}\\
+        &= 1+0\\
+        &= 1
+    \end{align*}
+    as required.
 \end{document}
